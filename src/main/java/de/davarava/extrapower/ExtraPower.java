@@ -2,6 +2,7 @@ package de.davarava.extrapower;
 
 import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
+import de.davarava.extrapower.item.ModCreativeModeTabs;
 import de.davarava.extrapower.item.ModItems;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import org.slf4j.Logger;
@@ -35,6 +36,8 @@ public class ExtraPower {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         ModMenuTypes.register(modEventBus);
         ModBlockEntities.register(modEventBus);

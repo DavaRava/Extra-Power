@@ -35,7 +35,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
     }
 
     private void assignFluidRenderer() {
-        fluidRenderer = new FluidTankRenderer(4000, true, 16, 64);
+        fluidRenderer = new FluidTankRenderer(menu.blockEntity.capacity, true, 16, 64);
     }
 
     private void renderFluidTooltipArea(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y,
