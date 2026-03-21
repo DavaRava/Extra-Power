@@ -19,9 +19,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.COPPER_FLUID_TANK.get());
+                .add(ModBlocks.COPPER_FLUID_TANK.get())
+                .add(ModBlocks.IRON_FLUID_TANK.get())
+                .add(ModBlocks.GOLD_FLUID_TANK.get())
+                .add(ModBlocks.DIAMOND_FLUID_TANK.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.COPPER_FLUID_TANK.get());
+                .add(ModBlocks.COPPER_FLUID_TANK.get())
+                .add(ModBlocks.IRON_FLUID_TANK.get())
+                .add(ModBlocks.GOLD_FLUID_TANK.get())
+                .add(ModBlocks.DIAMOND_FLUID_TANK.get());
     }
 }

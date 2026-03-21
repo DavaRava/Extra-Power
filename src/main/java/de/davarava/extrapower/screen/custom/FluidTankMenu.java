@@ -1,6 +1,7 @@
 package de.davarava.extrapower.screen.custom;
 
 import de.davarava.extrapower.block.ModBlocks;
+import de.davarava.extrapower.block.custom.FluidTankBlock;
 import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -11,6 +12,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
@@ -85,8 +87,12 @@ public class FluidTankMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.COPPER_FLUID_TANK.get());
+        Block block = level.getBlockState(blockEntity.getBlockPos()).getBlock();
+        if(block instanceof FluidTankBlock){
+            return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+                    pPlayer, block);
+        }
+        return false;
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

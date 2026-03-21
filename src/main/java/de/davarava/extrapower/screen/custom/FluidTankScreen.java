@@ -28,14 +28,14 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
     protected void init() {
         super.init();
         // Gets rid of title and inventory title
-        //this.inventoryLabelY = 10000;
-        //this.titleLabelY = 10000;
+        this.inventoryLabelY = 0;
+        this.titleLabelY = 5;
 
         assignFluidRenderer();
     }
 
     private void assignFluidRenderer() {
-        fluidRenderer = new FluidTankRenderer(menu.blockEntity.getCapacity(), true, 16, 64);
+        fluidRenderer = new FluidTankRenderer(4000, true, 16, 64);
     }
 
     private void renderFluidTooltipArea(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y,

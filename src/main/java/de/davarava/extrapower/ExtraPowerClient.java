@@ -35,6 +35,9 @@ public class ExtraPowerClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.COPPER_FLUID_TANK.get(), RenderType.TRANSLUCENT);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_FLUID_TANK.get(), RenderType.TRANSLUCENT);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GOLD_FLUID_TANK.get(), RenderType.TRANSLUCENT);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DIAMOND_FLUID_TANK.get(), RenderType.TRANSLUCENT);
     }
 
     @SubscribeEvent

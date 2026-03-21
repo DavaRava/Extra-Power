@@ -32,7 +32,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
-    private final int capacity = getCapacity();
+    public final int capacity = getCapacity();
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(2){
         @Override
@@ -77,11 +77,11 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     public int getCapacity(){
         if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
             return 2000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
             return 4000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
             return 8000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
             return 16000;
         }
         return 0;
