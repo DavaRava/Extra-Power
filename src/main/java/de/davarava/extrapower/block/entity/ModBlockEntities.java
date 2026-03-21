@@ -16,7 +16,8 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<FluidTankBlockEntity>> FLUID_TANK_BE =
             BLOCK_ENTITIES.register("fluid_tank_be", () -> BlockEntityType.Builder.of(
-                    FluidTankBlockEntity::new, ModBlocks.COPPER_FLUID_TANK.get()).build(null));
+                    FluidTankBlockEntity::new, ModBlocks.COPPER_FLUID_TANK.get(), ModBlocks.IRON_FLUID_TANK.get(),
+                    ModBlocks.GOLD_FLUID_TANK.get(), ModBlocks.DIAMOND_FLUID_TANK.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {

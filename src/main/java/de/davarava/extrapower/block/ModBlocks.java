@@ -21,6 +21,18 @@ public class ModBlocks {
             () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1f)
                     .sound(SoundType.COPPER).requiresCorrectToolForDrops().noOcclusion()));
 
+    public static final DeferredBlock<Block> IRON_FLUID_TANK = registerBlock("iron_fluid_tank",
+            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1f)
+                    .sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()));
+
+    public static final DeferredBlock<Block> GOLD_FLUID_TANK = registerBlock("gold_fluid_tank",
+            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1f)
+                    .sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()));
+
+    public static final DeferredBlock<Block> DIAMOND_FLUID_TANK = registerBlock("diamond_fluid_tank",
+            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1f)
+                    .sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()));
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

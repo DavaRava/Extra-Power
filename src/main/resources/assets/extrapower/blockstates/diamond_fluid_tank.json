@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "extrapower:block/diamond_fluid_tank"
+    }
+  }
+}

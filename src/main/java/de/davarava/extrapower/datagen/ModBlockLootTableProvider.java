@@ -26,6 +26,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.COPPER_FLUID_TANK.get());
+        dropSelf(ModBlocks.IRON_FLUID_TANK.get());
+        dropSelf(ModBlocks.GOLD_FLUID_TANK.get());
+        dropSelf(ModBlocks.DIAMOND_FLUID_TANK.get());
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

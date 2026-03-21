@@ -1,5 +1,6 @@
 package de.davarava.extrapower.block.entity.custom;
 
+import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.screen.custom.FluidTankMenu;
 import net.minecraft.core.BlockPos;
@@ -31,6 +32,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
+    private final int capacity = getCapacity();
+
     public final ItemStackHandler itemHandler = new ItemStackHandler(2){
         @Override
         protected void onContentsChanged(int slot) {
@@ -45,7 +48,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     };
     private final FluidTank FLUID_TANK = createFluidTank();
     private FluidTank createFluidTank() {
-        return new FluidTank(3000){
+        return new FluidTank(capacity){
             @Override
             protected void onContentsChanged() {
                 setChanged();
@@ -69,6 +72,19 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
 
     public IFluidHandler getTank(@Nullable Direction direction) {
         return FLUID_TANK;
+    }
+
+    public int getCapacity(){
+        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return 2000;
+        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return 4000;
+        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return 8000;
+        } else if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return 16000;
+        }
+        return 0;
     }
 
     @Override

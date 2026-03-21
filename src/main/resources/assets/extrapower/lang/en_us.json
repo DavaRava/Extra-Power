@@ -1,5 +1,8 @@
 {
   "block.extrapower.copper_fluid_tank": "Copper Fluid Tank",
+  "block.extrapower.iron_fluid_tank": "Iron Fluid Tank",
+  "block.extrapower.gold_fluid_tank": "Gold Fluid Tank",
+  "block.extrapower.diamond_fluid_tank": "Diamond Fluid Tank",
 
   "extrapower.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "extrapower.tooltip.liquid.amount": "%s mB"
