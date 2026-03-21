@@ -17,7 +17,7 @@ public class ModCreativeModeTabs {
 
     public static final Supplier<CreativeModeTab> EXTRAPOWER_TAB =
             CREATIVE_MODE_TABS.register("extrapower_tab", () -> CreativeModeTab.builder()
-                    .title(Component.translatable("tab.extrapower.tab"))
+                    .title(Component.translatable("tab.extrapower"))
                     .icon(() -> new ItemStack(Items.REDSTONE))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.COPPER_FLUID_TANK);
