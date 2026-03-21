@@ -1,3 +1,6 @@
 {
+  "block.extrapower.copper_fluid_tank": "Copper Fluid Tank",
 
+  "extrapower.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+  "extrapower.tooltip.liquid.amount": "%s mB"
 }

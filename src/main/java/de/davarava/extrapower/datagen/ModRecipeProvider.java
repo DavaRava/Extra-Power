@@ -1,0 +1,27 @@
+package de.davarava.extrapower.datagen;
+
+import de.davarava.extrapower.block.ModBlocks;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+
+import java.util.concurrent.CompletableFuture;
+
+public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+    public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
+        super(pOutput, pRegistries);
+    }
+
+    @Override
+    protected void buildRecipes(RecipeOutput pRecipeOutput) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_FLUID_TANK)
+                .pattern("ABA").define('A', Items.COPPER_INGOT).group("fluid_tanks")
+                .pattern("ABA").define('B', Items.GLASS).unlockedBy("has_glass", has(Items.GLASS))
+                .pattern("ABA").unlockedBy("has_copper", has(Items.COPPER_INGOT)).save(pRecipeOutput);
+    }
+}

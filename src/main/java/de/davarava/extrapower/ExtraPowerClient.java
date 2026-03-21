@@ -1,11 +1,14 @@
 package de.davarava.extrapower;
 
+import de.davarava.extrapower.screen.ModMenuTypes;
+import de.davarava.extrapower.screen.custom.FluidTankScreen;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -25,5 +28,10 @@ public class ExtraPowerClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
 
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event){
+        event.register(ModMenuTypes.FLUID_TANK_MENU.get(), FluidTankScreen::new);
     }
 }
