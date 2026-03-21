@@ -59,7 +59,10 @@ public class ExtraPower {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-
+            event.accept(ModBlocks.COPPER_FLUID_TANK);
+            event.accept(ModBlocks.IRON_FLUID_TANK);
+            event.accept(ModBlocks.GOLD_FLUID_TANK);
+            event.accept(ModBlocks.DIAMOND_FLUID_TANK);
         }
     }
 
