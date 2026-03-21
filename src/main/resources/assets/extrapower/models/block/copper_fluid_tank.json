@@ -1,7 +1,6 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"render_type": "minecraft:translucent",
 	"textures": {
 		"0": "extrapower:block/copper_fluid_tank",
 		"1": "extrapower:block/copper_fluid_tank_top",

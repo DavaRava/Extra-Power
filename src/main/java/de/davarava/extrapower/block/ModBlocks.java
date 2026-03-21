@@ -18,8 +18,8 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExtraPower.MODID);
 
     public static final DeferredBlock<Block> COPPER_FLUID_TANK = registerBlock("copper_fluid_tank",
-            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(3f, 6f)
-                    .sound(SoundType.GLASS).requiresCorrectToolForDrops().noOcclusion()));
+            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1f)
+                    .sound(SoundType.COPPER).requiresCorrectToolForDrops().noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

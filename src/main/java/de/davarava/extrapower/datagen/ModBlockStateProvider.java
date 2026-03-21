@@ -1,6 +1,7 @@
 package de.davarava.extrapower.datagen;
 
 import de.davarava.extrapower.ExtraPower;
+import de.davarava.extrapower.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;

@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/fluid_tank_gui/fluid_tank_gui.png");
+            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/fluid_tank/fluid_tank_gui.png");
     private FluidTankRenderer fluidRenderer;
 
     public FluidTankScreen(FluidTankMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
