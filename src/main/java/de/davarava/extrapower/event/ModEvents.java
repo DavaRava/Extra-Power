@@ -1,4 +1,4 @@
-package de.davarava.extrapower.block.event;
+package de.davarava.extrapower.event;
 
 import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
