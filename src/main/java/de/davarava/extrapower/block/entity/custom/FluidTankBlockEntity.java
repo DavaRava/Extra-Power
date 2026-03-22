@@ -1,6 +1,7 @@
 package de.davarava.extrapower.block.entity.custom;
 
 import de.davarava.extrapower.block.ModBlocks;
+import de.davarava.extrapower.block.custom.FluidTankBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.screen.custom.FluidTankMenu;
 import net.minecraft.core.BlockPos;
@@ -32,7 +33,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
-    public final int capacity = getCapacity();
+    public final int capacity = getFluidTankBlock().getCapacity();
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
@@ -70,53 +71,13 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return FLUID_TANK;
     }
 
-    public int getCapacity() {
-        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
-            return 8000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
-            return 16000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
-            return 32000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
-            return 64000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
-            return 128000;
-        }
-        return 0;
-    }
-    public int getFlowRate () {
-        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
-            return 250;
-        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
-            return 500;
-        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
-            return 750;
-        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
-            return 1000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
-            return 2000;
-        }
-        return 0;
-    }
-
-    private String getName () {
-        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
-            return "Copper ";
-        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
-            return "Iron ";
-        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
-            return "Gold ";
-        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
-            return "Diamond ";
-        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
-            return "Titanium ";
-        }
-        return null;
+    private FluidTankBlock getFluidTankBlock(){
+        return ((FluidTankBlock) this.getBlockState().getBlock());
     }
 
     @Override
     public Component getDisplayName () {
-        return Component.literal(getName() + "Fluid Tank");
+        return Component.literal(getFluidTankBlock().getNameOfBlock() + "Fluid Tank");
     }
 
     @Override
@@ -170,7 +131,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     private void pushFluidToAboveNeighbor ()
     { //push fluid from tank into the block above for example into a generator that uses a specific fluid
         FluidUtil.getFluidHandler(level, worldPosition.above(), null).ifPresent(iFluidHandler -> {
-            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, getFlowRate(), true);
+            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, getFluidTankBlock().getFlowRate(), true);
         });
     }
 

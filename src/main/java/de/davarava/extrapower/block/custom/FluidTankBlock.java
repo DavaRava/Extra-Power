@@ -10,7 +10,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -20,6 +22,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 public class FluidTankBlock extends BaseEntityBlock {
     public static final MapCodec<FluidTankBlock> CODEC = simpleCodec(FluidTankBlock::new);
@@ -37,7 +42,7 @@ public class FluidTankBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    private String getNameOfBlock(){
+    public String getNameOfBlock(){
         if(this.equals(ModBlocks.COPPER_FLUID_TANK.get())){
             return "Copper ";
         } else if(this.equals(ModBlocks.IRON_FLUID_TANK.get())){
@@ -50,6 +55,35 @@ public class FluidTankBlock extends BaseEntityBlock {
             return "Titanium  ";
         }
         return null;
+    }
+
+    public int getCapacity() {
+        if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
+            return 8000;
+        } else if (this.equals(ModBlocks.IRON_FLUID_TANK.get())) {
+            return 16000;
+        } else if (this.equals(ModBlocks.GOLD_FLUID_TANK.get())) {
+            return 32000;
+        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
+            return 64000;
+        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
+            return 128000;
+        }
+        return 0;
+    }
+    public int getFlowRate () {
+        if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
+            return 250;
+        } else if (this.equals(ModBlocks.IRON_FLUID_TANK.get())) {
+            return 500;
+        } else if (this.equals(ModBlocks.GOLD_FLUID_TANK.get())) {
+            return 750;
+        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
+            return 1000;
+        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
+            return 2000;
+        }
+        return 0;
     }
 
     @Override
@@ -90,5 +124,18 @@ public class FluidTankBlock extends BaseEntityBlock {
         return createTickerHelper(blockEntityType, ModBlockEntities.FLUID_TANK_BE.get(),
                 ((lvl, blockPos, blockState, fluidTankBlockEntity) ->
                         fluidTankBlockEntity.tick(lvl, blockPos, blockState)));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §lmB"));
+    }
+
+    private String formatNumber(int number) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String formatted = formatter.format(number);
+
+        return formatted.replace(',', '.');
     }
 }
