@@ -38,6 +38,7 @@ public class ExtraPowerClient {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_FLUID_TANK.get(), RenderType.TRANSLUCENT);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GOLD_FLUID_TANK.get(), RenderType.TRANSLUCENT);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.DIAMOND_FLUID_TANK.get(), RenderType.TRANSLUCENT);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TITANIUM_FLUID_TANK.get(), RenderType.TRANSLUCENT);
     }
 
     @SubscribeEvent
