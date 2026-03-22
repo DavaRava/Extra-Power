@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "fluid_tanks",
+  "key": {
+    "A": {
+      "item": "extrapower:titanium_ingot"
+    },
+    "B": {
+      "item": "minecraft:glass"
+    },
+    "C": {
+      "item": "extrapower:diamond_fluid_tank"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extrapower:titanium_fluid_tank"
+  }
+}

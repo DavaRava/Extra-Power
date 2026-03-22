@@ -22,8 +22,5 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(TagKey.create(ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")), ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")))
-                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.asItem())
-                .add(ModBlocks.NICKEL_ORE.asItem());
     }
 }

@@ -34,20 +34,21 @@ import org.jetbrains.annotations.Nullable;
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     public final int capacity = getCapacity();
 
-    public final ItemStackHandler itemHandler = new ItemStackHandler(2){
+    public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if(!level.isClientSide()) level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            if (!level.isClientSide()) level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
         }
     };
     private final FluidTank FLUID_TANK = createFluidTank();
+
     private FluidTank createFluidTank() {
-        return new FluidTank(capacity){
+        return new FluidTank(capacity) {
             @Override
             protected void onContentsChanged() {
                 setChanged();
-                if(!level.isClientSide()) level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                if (!level.isClientSide()) level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
 
             @Override
@@ -69,77 +70,82 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return FLUID_TANK;
     }
 
-    public int getCapacity(){
-        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+    public int getCapacity() {
+        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
             return 8000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
             return 16000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
             return 32000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
             return 64000;
+        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
+            return 128000;
         }
         return 0;
     }
-
-    public int getFlowRate(){
-        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+    public int getFlowRate () {
+        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
             return 250;
-        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
             return 500;
-        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
             return 750;
-        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
             return 1000;
+        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_BLOCK.get()) {
+            return 2000;
         }
         return 0;
     }
 
-    private String getName(){
-        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+    private String getName () {
+        if (this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()) {
             return "Copper ";
-        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()) {
             return "Iron ";
-        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()) {
             return "Gold ";
-        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+        } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
             return "Diamond ";
+        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_BLOCK.get()) {
+            return "Titanium ";
         }
         return null;
     }
 
     @Override
-    public Component getDisplayName() {
+    public Component getDisplayName () {
         return Component.literal(getName() + "Fluid Tank");
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu ( int containerId, Inventory playerInventory, Player player){
         return new FluidTankMenu(containerId, playerInventory, this);
     }
 
-    public void drops() {
+    public void drops () {
         SimpleContainer inv = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++){
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
             inv.setItem(i, itemHandler.getStackInSlot(i));
         }
 
         Containers.dropContents(this.level, this.worldPosition, inv);
     }
 
-    public void tick(Level lvl, BlockPos blockPos, BlockState blockState) {
-        if(hasFluidItemInFirstSlot() && canInsertHandler()){
+    public void tick (Level lvl, BlockPos blockPos, BlockState blockState){
+        if (hasFluidItemInFirstSlot() && canInsertHandler()) {
             transferFluidToTank();
         }
 
-        if(hasFluidHandlerInFirstSlot() && canInsertFluidItem()){
+        if (hasFluidHandlerInFirstSlot() && canInsertFluidItem()) {
             transferFluidFromTankToHandler();
         }
 
         pushFluidToAboveNeighbor();
     }
 
-    private boolean canInsertResult(ItemStack result) {
+    private boolean canInsertResult (ItemStack result){
         ItemStack output = itemHandler.getStackInSlot(1);
 
         if (output.isEmpty()) return true;
@@ -149,11 +155,11 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return output.getCount() + result.getCount() <= output.getMaxStackSize();
     }
 
-    private boolean canInsertFluidItem() {
+    private boolean canInsertFluidItem () {
         return itemHandler.getStackInSlot(1).isEmpty();
     }
 
-    private boolean canInsertHandler() {
+    private boolean canInsertHandler () {
         ItemStack input = itemHandler.getStackInSlot(0);
         FluidActionResult result = FluidUtil.tryEmptyContainer(input, FLUID_TANK, Integer.MAX_VALUE, null, false);
 
@@ -161,21 +167,23 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return canInsertResult(result.result);
     }
 
-    private void pushFluidToAboveNeighbor() { //push fluid from tank into the block above for example into a generator that uses a specific fluid
+    private void pushFluidToAboveNeighbor ()
+    { //push fluid from tank into the block above for example into a generator that uses a specific fluid
         FluidUtil.getFluidHandler(level, worldPosition.above(), null).ifPresent(iFluidHandler -> {
             FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, getFlowRate(), true);
         });
     }
 
-    private void transferFluidFromTankToHandler() { //transfer fluid from tank into the fluid handler item
+    private void transferFluidFromTankToHandler () { //transfer fluid from tank into the fluid handler item
         FluidActionResult result = FluidUtil.tryFillContainer(itemHandler.getStackInSlot(0), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
-        if(result.result != ItemStack.EMPTY){
+        if (result.result != ItemStack.EMPTY) {
             itemHandler.getStackInSlot(0).shrink(1);
             itemHandler.setStackInSlot(1, result.result);
         }
     }
 
-    private boolean hasFluidHandlerInFirstSlot() { //if second slot has a fluid handler item for example an empty bucket
+    private boolean hasFluidHandlerInFirstSlot ()
+    { //if second slot has a fluid handler item for example an empty bucket
         return !itemHandler.getStackInSlot(0).isEmpty()
                 && itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null) != null
                 && (itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null).getFluidInTank(0).isEmpty() ||
@@ -183,12 +191,12 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
                         FLUID_TANK, Integer.MAX_VALUE, false) != FluidStack.EMPTY);
     }
 
-    private void transferFluidToTank() { //transfer fluid from fluid stack item into the tank
+    private void transferFluidToTank () { //transfer fluid from fluid stack item into the tank
         FluidActionResult result = FluidUtil.tryEmptyContainer(itemHandler.getStackInSlot(0), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
-        if(result.result != ItemStack.EMPTY){
+        if (result.result != ItemStack.EMPTY) {
             itemHandler.setStackInSlot(0, ItemStack.EMPTY);
 
-            if(itemHandler.getStackInSlot(1).isEmpty()){
+            if (itemHandler.getStackInSlot(1).isEmpty()) {
                 itemHandler.setStackInSlot(1, result.result);
             } else {
                 itemHandler.getStackInSlot(1).grow(result.result.getCount());
@@ -196,7 +204,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    private boolean hasFluidItemInFirstSlot() { //if first slot has a fluid stack item for example a water bucket
+    private boolean hasFluidItemInFirstSlot () { //if first slot has a fluid stack item for example a water bucket
         return !itemHandler.getStackInSlot(0).isEmpty()
                 && itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null) != null
                 && !itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null).getFluidInTank(0).isEmpty();
@@ -205,7 +213,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     // Synchronisation
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional (CompoundTag tag, HolderLookup.Provider registries){
         tag.put("fluid_tank.inventory", itemHandler.serializeNBT(registries));
         tag = FLUID_TANK.writeToNBT(registries, tag);
 
@@ -213,24 +221,25 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional (CompoundTag tag, HolderLookup.Provider registries){
         super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("fluid_tank.inventory"));
         FLUID_TANK.readFromNBT(registries, tag);
     }
 
     @Override
-    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket () {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    public CompoundTag getUpdateTag (HolderLookup.Provider registries){
         return saveWithoutMetadata(registries);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+    public void onDataPacket (Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider
+            lookupProvider){
         super.onDataPacket(net, pkt, lookupProvider);
     }
 }

@@ -67,18 +67,12 @@ public class ExtraPower {
             event.accept(ModBlocks.GOLD_FLUID_TANK);
             event.accept(ModBlocks.DIAMOND_FLUID_TANK);
         }
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.NICKEL_ORE);
-            event.accept(ModBlocks.DEEPSLATE_NICKEL_ORE);
-        }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.NICKEL_BLOCK);
-            event.accept(ModBlocks.RAW_NICKEL_BLOCK);
+            event.accept(ModBlocks.TITANIUM_BLOCK);
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.RAW_NICKEL);
-            event.accept(ModItems.NICKEL_INGOT);
-            event.accept(ModItems.NICKEL_NUGGET);
+            event.accept(ModItems.TITANIUM_INGOT);
+            event.accept(ModItems.TITANIUM_NUGGET);
         }
     }
 

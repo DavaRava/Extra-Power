@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "titanium",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "extrapower:titanium_ingot"
+  }
+}

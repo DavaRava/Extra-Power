@@ -3,15 +3,12 @@
   "block.extrapower.iron_fluid_tank": "Iron Fluid Tank",
   "block.extrapower.gold_fluid_tank": "Gold Fluid Tank",
   "block.extrapower.diamond_fluid_tank": "Diamond Fluid Tank",
+  "block.extrapower.titanium_fluid_tank": "Titanium Fluid Tank",
 
-  "block.extrapower.raw_nickel_block": "Raw Block of Nickel",
-  "block.extrapower.nickel_block": "Block of Nickel",
-  "block.extrapower.nickel_ore": "Nickel Ore",
-  "block.extrapower.deepslate_nickel_ore": "Deepslate Nickel Ore",
+  "block.extrapower.titanium_block": "Block of Titanium",
 
-  "item.extrapower.raw_nickel": "Raw Nickel",
-  "item.extrapower.nickel_ingot": "Nickel Ingot",
-  "item.extrapower.nickel_nugget": "Nickel Nugget",
+  "item.extrapower.titanium_ingot": "Titanium Ingot",
+  "item.extrapower.titanium_nugget": "Titanium Nugget",
 
   "extrapower.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "extrapower.tooltip.liquid.amount": "%s mB",

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "titanium",
+  "ingredients": [
+    {
+      "item": "extrapower:titanium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "extrapower:titanium_nugget"
+  }
+}

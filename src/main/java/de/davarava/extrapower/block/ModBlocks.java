@@ -29,19 +29,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> DIAMOND_FLUID_TANK = registerBlock("diamond_fluid_tank",
             () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1.5f)
                     .sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()));
+    public static final DeferredBlock<Block> TITANIUM_FLUID_TANK = registerBlock("titanium_fluid_tank",
+            () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(2f)
+                    .sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()));
 
-    public static final DeferredBlock<Block> RAW_NICKEL_BLOCK = registerBlock("raw_nickel_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(5f, 6f)
-                    .requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> NICKEL_BLOCK = registerBlock("nickel_block",
-            () -> new Block(BlockBehaviour.Properties.of().strength(5f, 6f)
+    public static final DeferredBlock<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
+            () -> new Block(BlockBehaviour.Properties.of().strength(7f, 8f)
                     .sound(SoundType.METAL).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> NICKEL_ORE = registerBlock("nickel_ore",
-            () -> new Block(BlockBehaviour.Properties.of().strength(3f, 3f)
-                    .sound(SoundType.STONE).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> DEEPSLATE_NICKEL_ORE = registerBlock("deepslate_nickel_ore",
-            () -> new Block(BlockBehaviour.Properties.of().strength(4.5f, 3f)
-                    .sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

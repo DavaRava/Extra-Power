@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -18,21 +17,18 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> EXTRAPOWER_TAB =
             CREATIVE_MODE_TABS.register("extrapower_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("tab.extrapower"))
-                    .icon(() -> new ItemStack(ModItems.NICKEL_INGOT.get()))
+                    .icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.RAW_NICKEL);
-                        pOutput.accept(ModItems.NICKEL_INGOT);
-                        pOutput.accept(ModItems.NICKEL_NUGGET);
+                        pOutput.accept(ModItems.TITANIUM_INGOT);
+                        pOutput.accept(ModItems.TITANIUM_NUGGET);
 
-                        pOutput.accept(ModBlocks.NICKEL_ORE);
-                        pOutput.accept(ModBlocks.DEEPSLATE_NICKEL_ORE);
-                        pOutput.accept(ModBlocks.RAW_NICKEL_BLOCK);
-                        pOutput.accept(ModBlocks.NICKEL_BLOCK);
+                        pOutput.accept(ModBlocks.TITANIUM_BLOCK);
 
                         pOutput.accept(ModBlocks.COPPER_FLUID_TANK);
                         pOutput.accept(ModBlocks.IRON_FLUID_TANK);
                         pOutput.accept(ModBlocks.GOLD_FLUID_TANK);
                         pOutput.accept(ModBlocks.DIAMOND_FLUID_TANK);
+                        pOutput.accept(ModBlocks.TITANIUM_FLUID_TANK);
                     }).build());
 
     public static void register(IEventBus eventBus) {

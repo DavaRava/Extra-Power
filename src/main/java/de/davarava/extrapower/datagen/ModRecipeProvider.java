@@ -39,36 +39,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("ACA").define('B', Items.GLASS).unlockedBy("has_glass", has(Items.GLASS))
                 .pattern("ABA").unlockedBy("has_diamond", has(Items.DIAMOND)).save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.TITANIUM_FLUID_TANK)
+                .pattern("ABA").define('A', ModItems.TITANIUM_INGOT).group("fluid_tanks").define('C', ModBlocks.DIAMOND_FLUID_TANK)
+                .pattern("ACA").define('B', Items.GLASS).unlockedBy("has_glass", has(Items.GLASS))
+                .pattern("ABA").unlockedBy("has_titanium", has(ModItems.TITANIUM_INGOT)).save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.NICKEL_BLOCK)
-                .pattern("AAA").define('A', ModItems.NICKEL_INGOT).group("nickel")
-                .pattern("AAA").unlockedBy("has_nickel", has(ModItems.NICKEL_INGOT))
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.TITANIUM_BLOCK)
+                .pattern("AAA").define('A', ModItems.TITANIUM_INGOT).group("titanium")
+                .pattern("AAA").unlockedBy("has_titanium", has(ModItems.TITANIUM_INGOT))
                 .pattern("AAA").save(pRecipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RAW_NICKEL_BLOCK)
-                .pattern("AAA").define('A', ModItems.RAW_NICKEL).group("nickel")
-                .pattern("AAA").unlockedBy("has_raw_nickel", has(ModItems.RAW_NICKEL))
-                .pattern("AAA").save(pRecipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TITANIUM_INGOT)
+                .pattern("AAA").define('A', ModItems.TITANIUM_NUGGET).group("titanium")
+                .pattern("AAA").unlockedBy("has_titanium_nugget", has(ModItems.TITANIUM_NUGGET))
+                .pattern("AAA").save(pRecipeOutput, "titanium_ingot_from_titanium_nuggets");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.NICKEL_INGOT)
-                .pattern("AAA").define('A', ModItems.NICKEL_NUGGET).group("nickel")
-                .pattern("AAA").unlockedBy("has_nickel_nugget", has(ModItems.NICKEL_NUGGET))
-                .pattern("AAA").save(pRecipeOutput, "nickel_ingot_from_nickel_nuggets");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TITANIUM_NUGGET, 9)
+                .requires(ModItems.TITANIUM_INGOT, 1).unlockedBy("has_titanium", has(ModItems.TITANIUM_INGOT))
+                .group("titanium").save(pRecipeOutput);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NICKEL_NUGGET, 9)
-                .requires(ModItems.NICKEL_INGOT, 1).unlockedBy("has_nickel", has(ModItems.NICKEL_INGOT))
-                .group("nickel").save(pRecipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TITANIUM_INGOT, 9)
+                .requires(ModBlocks.TITANIUM_BLOCK, 1).unlockedBy("has_titanium", has(ModItems.TITANIUM_INGOT))
+                .group("titanium").save(pRecipeOutput, "titanium_ingot_from_titanium_block");
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NICKEL_INGOT, 9)
-                .requires(ModBlocks.NICKEL_BLOCK, 1).unlockedBy("has_nickel", has(ModItems.NICKEL_INGOT))
-                .group("nickel").save(pRecipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_NICKEL, 9)
-                .requires(ModBlocks.RAW_NICKEL_BLOCK, 1).unlockedBy("has_raw_nickel", has(ModItems.RAW_NICKEL))
-                .group("nickel").save(pRecipeOutput);
-
-        List<ItemLike> NICKEL_ORE_SMELTING = List.of(ModItems.RAW_NICKEL, ModBlocks.NICKEL_ORE, ModBlocks.DEEPSLATE_NICKEL_ORE);
-        oreSmelting(pRecipeOutput, NICKEL_ORE_SMELTING, RecipeCategory.MISC, ModItems.NICKEL_INGOT, 0.7f, 200, "nickel");
-        oreBlasting(pRecipeOutput, NICKEL_ORE_SMELTING, RecipeCategory.MISC, ModItems.NICKEL_INGOT, 0.7f, 100, "nickel");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TITANIUM_INGOT)
+                .requires(Items.DIAMOND).unlockedBy("has_titanium", has(ModItems.TITANIUM_INGOT))
+                .requires(Items.IRON_INGOT).requires(Items.GOLD_INGOT)
+                .group("titanium").save(pRecipeOutput);
     }
 }

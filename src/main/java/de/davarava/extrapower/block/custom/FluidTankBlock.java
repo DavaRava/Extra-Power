@@ -46,6 +46,8 @@ public class FluidTankBlock extends BaseEntityBlock {
             return "Gold ";
         } else if(this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())){
             return "Diamond ";
+        } else if(this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())){
+            return "Titanium  ";
         }
         return null;
     }

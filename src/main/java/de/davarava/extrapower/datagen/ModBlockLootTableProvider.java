@@ -30,11 +30,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.IRON_FLUID_TANK.get());
         dropSelf(ModBlocks.GOLD_FLUID_TANK.get());
         dropSelf(ModBlocks.DIAMOND_FLUID_TANK.get());
+        dropSelf(ModBlocks.TITANIUM_FLUID_TANK.get());
 
-        dropSelf(ModBlocks.NICKEL_BLOCK.get());
-        dropSelf(ModBlocks.RAW_NICKEL_BLOCK.get());
-        this.add(ModBlocks.NICKEL_ORE.get(), block -> createMultipleOreDrops(ModBlocks.NICKEL_ORE.get(), ModItems.RAW_NICKEL.get(), 1, 2));
-        this.add(ModBlocks.DEEPSLATE_NICKEL_ORE.get(), block -> createMultipleOreDrops(ModBlocks.DEEPSLATE_NICKEL_ORE.get(), ModItems.RAW_NICKEL.get(), 1, 2));
+        dropSelf(ModBlocks.TITANIUM_BLOCK.get());
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {
