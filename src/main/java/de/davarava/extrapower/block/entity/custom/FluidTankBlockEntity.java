@@ -93,7 +93,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
             return 750;
         } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
             return 1000;
-        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_BLOCK.get()) {
+        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
             return 2000;
         }
         return 0;
@@ -108,7 +108,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
             return "Gold ";
         } else if (this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()) {
             return "Diamond ";
-        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_BLOCK.get()) {
+        } else if (this.getBlockState().getBlock() == ModBlocks.TITANIUM_FLUID_TANK.get()) {
             return "Titanium ";
         }
         return null;
