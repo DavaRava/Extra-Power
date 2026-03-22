@@ -4,7 +4,10 @@ import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -22,12 +25,24 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.COPPER_FLUID_TANK.get())
                 .add(ModBlocks.IRON_FLUID_TANK.get())
                 .add(ModBlocks.GOLD_FLUID_TANK.get())
-                .add(ModBlocks.DIAMOND_FLUID_TANK.get());
+                .add(ModBlocks.DIAMOND_FLUID_TANK.get())
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_BLOCK.get())
+                .add(ModBlocks.RAW_NICKEL_BLOCK.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.COPPER_FLUID_TANK.get())
                 .add(ModBlocks.IRON_FLUID_TANK.get())
                 .add(ModBlocks.GOLD_FLUID_TANK.get())
-                .add(ModBlocks.DIAMOND_FLUID_TANK.get());
+                .add(ModBlocks.DIAMOND_FLUID_TANK.get())
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_BLOCK.get())
+                .add(ModBlocks.RAW_NICKEL_BLOCK.get());
+
+        this.tag(TagKey.create(ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")), ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")))
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.get())
+                .add(ModBlocks.NICKEL_ORE.get());
     }
 }

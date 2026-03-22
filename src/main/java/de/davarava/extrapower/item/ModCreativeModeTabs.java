@@ -18,8 +18,17 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> EXTRAPOWER_TAB =
             CREATIVE_MODE_TABS.register("extrapower_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("tab.extrapower"))
-                    .icon(() -> new ItemStack(Items.REDSTONE))
+                    .icon(() -> new ItemStack(ModItems.NICKEL_INGOT.get()))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.RAW_NICKEL);
+                        pOutput.accept(ModItems.NICKEL_INGOT);
+                        pOutput.accept(ModItems.NICKEL_NUGGET);
+
+                        pOutput.accept(ModBlocks.NICKEL_ORE);
+                        pOutput.accept(ModBlocks.DEEPSLATE_NICKEL_ORE);
+                        pOutput.accept(ModBlocks.RAW_NICKEL_BLOCK);
+                        pOutput.accept(ModBlocks.NICKEL_BLOCK);
+
                         pOutput.accept(ModBlocks.COPPER_FLUID_TANK);
                         pOutput.accept(ModBlocks.IRON_FLUID_TANK);
                         pOutput.accept(ModBlocks.GOLD_FLUID_TANK);

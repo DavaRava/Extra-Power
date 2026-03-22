@@ -3,6 +3,10 @@
     "extrapower:copper_fluid_tank",
     "extrapower:iron_fluid_tank",
     "extrapower:gold_fluid_tank",
-    "extrapower:diamond_fluid_tank"
+    "extrapower:diamond_fluid_tank",
+    "extrapower:deepslate_nickel_ore",
+    "extrapower:nickel_ore",
+    "extrapower:nickel_block",
+    "extrapower:raw_nickel_block"
   ]
 }

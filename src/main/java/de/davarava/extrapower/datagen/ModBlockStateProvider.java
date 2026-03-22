@@ -13,6 +13,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+        simpleBlockWithItem(ModBlocks.NICKEL_ORE.get(), cubeAll(ModBlocks.NICKEL_ORE.get()));
+        simpleBlockWithItem(ModBlocks.DEEPSLATE_NICKEL_ORE.get(), cubeAll(ModBlocks.DEEPSLATE_NICKEL_ORE.get()));
+        simpleBlockWithItem(ModBlocks.NICKEL_BLOCK.get(), cubeAll(ModBlocks.NICKEL_BLOCK.get()));
+        simpleBlockWithItem(ModBlocks.RAW_NICKEL_BLOCK.get(), cubeAll(ModBlocks.RAW_NICKEL_BLOCK.get()));
     }
 }

@@ -1,9 +1,13 @@
 package de.davarava.extrapower.datagen;
 
 import de.davarava.extrapower.ExtraPower;
+import de.davarava.extrapower.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -18,6 +22,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-
+        this.tag(TagKey.create(ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")), ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "nickel_ores")))
+                .add(ModBlocks.DEEPSLATE_NICKEL_ORE.asItem())
+                .add(ModBlocks.NICKEL_ORE.asItem());
     }
 }

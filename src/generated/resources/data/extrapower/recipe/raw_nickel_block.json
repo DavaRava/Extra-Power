@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "nickel",
+  "key": {
+    "A": {
+      "item": "extrapower:raw_nickel"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extrapower:raw_nickel_block"
+  }
+}
