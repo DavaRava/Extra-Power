@@ -1,5 +1,8 @@
 {
   "values": [
-    "extrapower:copper_fluid_tank"
+    "extrapower:copper_fluid_tank",
+    "extrapower:iron_fluid_tank",
+    "extrapower:gold_fluid_tank",
+    "extrapower:diamond_fluid_tank"
   ]
 }

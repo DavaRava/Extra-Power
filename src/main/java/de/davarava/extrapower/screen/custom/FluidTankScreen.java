@@ -27,15 +27,12 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
     @Override
     protected void init() {
         super.init();
-        // Gets rid of title and inventory title
-        this.inventoryLabelY = 0;
-        this.titleLabelY = 5;
 
         assignFluidRenderer();
     }
 
     private void assignFluidRenderer() {
-        fluidRenderer = new FluidTankRenderer(menu.blockEntity.capacity, true, 16, 64);
+        fluidRenderer = new FluidTankRenderer(menu.blockEntity.capacity, true, 52, 52);
     }
 
     private void renderFluidTooltipArea(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y,
@@ -48,10 +45,11 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int pMouseX, int pMouseY) {
+        super.renderLabels(guiGraphics, pMouseX, pMouseY);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 80, 8, fluidRenderer);
+        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 62, 16, fluidRenderer);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        fluidRenderer.render(guiGraphics, x + 80, y + 8, menu.blockEntity.getFluid());
+        fluidRenderer.render(guiGraphics, x + 62, y + 16, menu.blockEntity.getFluid());
     }
 
     @Override

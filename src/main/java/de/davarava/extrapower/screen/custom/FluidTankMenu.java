@@ -33,11 +33,11 @@ public class FluidTankMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 44, 34));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 116, 34) {
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 26, 34));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 134, 34) {
             @Override
-            public int getMaxStackSize() {
-                return 1;
+            public boolean mayPlace(ItemStack stack) {
+                return false;
             }
         });
     }

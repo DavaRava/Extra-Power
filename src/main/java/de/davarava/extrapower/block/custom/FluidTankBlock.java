@@ -1,6 +1,7 @@
 package de.davarava.extrapower.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -21,18 +22,32 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlock extends BaseEntityBlock {
+    public static final MapCodec<FluidTankBlock> CODEC = simpleCodec(FluidTankBlock::new);
     public FluidTankBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return null;
+        return CODEC;
     }
 
     @Override
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
+    }
+
+    private String getNameOfBlock(){
+        if(this.equals(ModBlocks.COPPER_FLUID_TANK.get())){
+            return "Copper ";
+        } else if(this.equals(ModBlocks.IRON_FLUID_TANK.get())){
+            return "Iron ";
+        } else if(this.equals(ModBlocks.GOLD_FLUID_TANK.get())){
+            return "Gold ";
+        } else if(this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())){
+            return "Diamond ";
+        }
+        return null;
     }
 
     @Override
@@ -52,7 +67,7 @@ public class FluidTankBlock extends BaseEntityBlock {
         if(!level.isClientSide){
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if(blockEntity instanceof FluidTankBlockEntity fluidTankBlockEntity){
-                player.openMenu(new SimpleMenuProvider(fluidTankBlockEntity, Component.literal("Fluid Tank")), pos);
+                player.openMenu(new SimpleMenuProvider(fluidTankBlockEntity, Component.literal(  getNameOfBlock() + "Fluid Tank")), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

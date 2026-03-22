@@ -40,11 +40,6 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
             setChanged();
             if(!level.isClientSide()) level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
         }
-
-        @Override
-        public int getSlotLimit(int slot) {
-            return slot == 1 ? 1 : super.getSlotLimit(slot);
-        }
     };
     private final FluidTank FLUID_TANK = createFluidTank();
     private FluidTank createFluidTank() {
@@ -76,20 +71,46 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
 
     public int getCapacity(){
         if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
-            return 2000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
-            return 4000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
             return 8000;
-        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
             return 16000;
+        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+            return 32000;
+        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+            return 64000;
         }
         return 0;
     }
 
+    public int getFlowRate(){
+        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return 250;
+        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
+            return 500;
+        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+            return 750;
+        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+            return 1000;
+        }
+        return 0;
+    }
+
+    private String getName(){
+        if(this.getBlockState().getBlock() == ModBlocks.COPPER_FLUID_TANK.get()){
+            return "Copper ";
+        } else if(this.getBlockState().getBlock() == ModBlocks.IRON_FLUID_TANK.get()){
+            return "Iron ";
+        } else if(this.getBlockState().getBlock() == ModBlocks.GOLD_FLUID_TANK.get()){
+            return "Gold ";
+        } else if(this.getBlockState().getBlock() == ModBlocks.DIAMOND_FLUID_TANK.get()){
+            return "Diamond ";
+        }
+        return null;
+    }
+
     @Override
     public Component getDisplayName() {
-        return Component.literal("Fluid Tank");
+        return Component.literal(getName() + "Fluid Tank");
     }
 
     @Override
@@ -107,46 +128,75 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level lvl, BlockPos blockPos, BlockState blockState) {
-        if(hasFluidStackInFirstSlot()){
+        if(hasFluidItemInFirstSlot() && canInsertHandler()){
             transferFluidToTank();
         }
 
-        if(hasFluidHandlerInSecondSlot()){
+        if(hasFluidHandlerInFirstSlot() && canInsertFluidItem()){
             transferFluidFromTankToHandler();
         }
 
         pushFluidToAboveNeighbor();
     }
 
+    private boolean canInsertResult(ItemStack result) {
+        ItemStack output = itemHandler.getStackInSlot(1);
+
+        if (output.isEmpty()) return true;
+
+        if (!ItemStack.isSameItemSameComponents(output, result)) return false;
+
+        return output.getCount() + result.getCount() <= output.getMaxStackSize();
+    }
+
+    private boolean canInsertFluidItem() {
+        return itemHandler.getStackInSlot(1).isEmpty();
+    }
+
+    private boolean canInsertHandler() {
+        ItemStack input = itemHandler.getStackInSlot(0);
+        FluidActionResult result = FluidUtil.tryEmptyContainer(input, FLUID_TANK, Integer.MAX_VALUE, null, false);
+
+        if (!result.isSuccess()) return false;
+        return canInsertResult(result.result);
+    }
+
     private void pushFluidToAboveNeighbor() { //push fluid from tank into the block above for example into a generator that uses a specific fluid
         FluidUtil.getFluidHandler(level, worldPosition.above(), null).ifPresent(iFluidHandler -> {
-            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, Integer.MAX_VALUE, true);
+            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, getFlowRate(), true);
         });
     }
 
     private void transferFluidFromTankToHandler() { //transfer fluid from tank into the fluid handler item
-        FluidActionResult result = FluidUtil.tryFillContainer(itemHandler.getStackInSlot(1), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
+        FluidActionResult result = FluidUtil.tryFillContainer(itemHandler.getStackInSlot(0), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
         if(result.result != ItemStack.EMPTY){
+            itemHandler.getStackInSlot(0).shrink(1);
             itemHandler.setStackInSlot(1, result.result);
         }
     }
 
-    private boolean hasFluidHandlerInSecondSlot() { //if second slot has a fluid handler item for example an empty bucket
-        return !itemHandler.getStackInSlot(1).isEmpty()
-                && itemHandler.getStackInSlot(1).getCapability(Capabilities.FluidHandler.ITEM, null) != null
-                && (itemHandler.getStackInSlot(1).getCapability(Capabilities.FluidHandler.ITEM, null).getFluidInTank(0).isEmpty() ||
-                FluidUtil.tryFluidTransfer(itemHandler.getStackInSlot(1).getCapability(Capabilities.FluidHandler.ITEM, null),
+    private boolean hasFluidHandlerInFirstSlot() { //if second slot has a fluid handler item for example an empty bucket
+        return !itemHandler.getStackInSlot(0).isEmpty()
+                && itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null) != null
+                && (itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null).getFluidInTank(0).isEmpty() ||
+                FluidUtil.tryFluidTransfer(itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null),
                         FLUID_TANK, Integer.MAX_VALUE, false) != FluidStack.EMPTY);
     }
 
     private void transferFluidToTank() { //transfer fluid from fluid stack item into the tank
         FluidActionResult result = FluidUtil.tryEmptyContainer(itemHandler.getStackInSlot(0), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
         if(result.result != ItemStack.EMPTY){
-            itemHandler.setStackInSlot(0, result.result);
+            itemHandler.setStackInSlot(0, ItemStack.EMPTY);
+
+            if(itemHandler.getStackInSlot(1).isEmpty()){
+                itemHandler.setStackInSlot(1, result.result);
+            } else {
+                itemHandler.getStackInSlot(1).grow(result.result.getCount());
+            }
         }
     }
 
-    private boolean hasFluidStackInFirstSlot() { //if first slot has a fluid stack item for example a water bucket
+    private boolean hasFluidItemInFirstSlot() { //if first slot has a fluid stack item for example a water bucket
         return !itemHandler.getStackInSlot(0).isEmpty()
                 && itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null) != null
                 && !itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null).getFluidInTank(0).isEmpty();
