@@ -14,5 +14,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlockWithItem(ModBlocks.TITANIUM_BLOCK.get(), cubeAll(ModBlocks.TITANIUM_BLOCK.get()));
+
+        simpleBlockWithItem(ModBlocks.COPPER_BATTERY.get(), cubeAll(ModBlocks.COPPER_BATTERY.get()));
+        simpleBlockWithItem(ModBlocks.IRON_BATTERY.get(), cubeAll(ModBlocks.IRON_BATTERY.get()));
+        simpleBlockWithItem(ModBlocks.GOLD_BATTERY.get(), cubeAll(ModBlocks.GOLD_BATTERY.get()));
+        simpleBlockWithItem(ModBlocks.DIAMOND_BATTERY.get(), cubeAll(ModBlocks.DIAMOND_BATTERY.get()));
+        simpleBlockWithItem(ModBlocks.TITANIUM_BATTERY.get(), cubeAll(ModBlocks.TITANIUM_BATTERY.get()));
     }
 }

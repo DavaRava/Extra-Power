@@ -5,6 +5,12 @@
   "block.extrapower.diamond_fluid_tank": "Diamond Fluid Tank",
   "block.extrapower.titanium_fluid_tank": "Titanium Fluid Tank",
 
+  "block.extrapower.copper_battery": "Copper Battery",
+  "block.extrapower.iron_battery": "Iron Battery",
+  "block.extrapower.gold_battery": "Gold Battery",
+  "block.extrapower.diamond_battery": "Diamond Battery",
+  "block.extrapower.titanium_battery": "Titanium Battery",
+
   "block.extrapower.titanium_block": "Block of Titanium",
 
   "item.extrapower.titanium_ingot": "Titanium Ingot",

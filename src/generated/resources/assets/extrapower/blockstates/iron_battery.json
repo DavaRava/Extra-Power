@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "extrapower:block/iron_battery"
+    }
+  }
+}

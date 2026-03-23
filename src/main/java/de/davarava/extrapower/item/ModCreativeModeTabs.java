@@ -29,6 +29,12 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.GOLD_FLUID_TANK);
                         pOutput.accept(ModBlocks.DIAMOND_FLUID_TANK);
                         pOutput.accept(ModBlocks.TITANIUM_FLUID_TANK);
+
+                        pOutput.accept(ModBlocks.COPPER_BATTERY);
+                        pOutput.accept(ModBlocks.IRON_BATTERY);
+                        pOutput.accept(ModBlocks.GOLD_BATTERY);
+                        pOutput.accept(ModBlocks.DIAMOND_BATTERY);
+                        pOutput.accept(ModBlocks.TITANIUM_BATTERY);
                     }).build());
 
     public static void register(IEventBus eventBus) {

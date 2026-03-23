@@ -1,6 +1,8 @@
 {
   "values": [
     "extrapower:gold_fluid_tank",
-    "extrapower:diamond_fluid_tank"
+    "extrapower:diamond_fluid_tank",
+    "extrapower:gold_battery",
+    "extrapower:diamond_battery"
   ]
 }

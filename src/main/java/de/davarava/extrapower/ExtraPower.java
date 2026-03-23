@@ -66,6 +66,13 @@ public class ExtraPower {
             event.accept(ModBlocks.IRON_FLUID_TANK);
             event.accept(ModBlocks.GOLD_FLUID_TANK);
             event.accept(ModBlocks.DIAMOND_FLUID_TANK);
+            event.accept(ModBlocks.TITANIUM_FLUID_TANK);
+
+            event.accept(ModBlocks.COPPER_BATTERY);
+            event.accept(ModBlocks.IRON_BATTERY);
+            event.accept(ModBlocks.GOLD_BATTERY);
+            event.accept(ModBlocks.DIAMOND_BATTERY);
+            event.accept(ModBlocks.TITANIUM_BATTERY);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.TITANIUM_BLOCK);
