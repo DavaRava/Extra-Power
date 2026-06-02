@@ -22,34 +22,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.COPPER_FLUID_TANK.get())
-                .add(ModBlocks.IRON_FLUID_TANK.get())
-                .add(ModBlocks.GOLD_FLUID_TANK.get())
-                .add(ModBlocks.DIAMOND_FLUID_TANK.get())
-                .add(ModBlocks.TITANIUM_FLUID_TANK.get())
-                .add(ModBlocks.COPPER_BATTERY.get())
-                .add(ModBlocks.IRON_BATTERY.get())
-                .add(ModBlocks.GOLD_BATTERY.get())
-                .add(ModBlocks.DIAMOND_BATTERY.get())
-                .add(ModBlocks.TITANIUM_BATTERY.get())
-                .add(ModBlocks.TITANIUM_BLOCK.get());
-
+                .add(ModBlocks.BASIC_FLUID_TANK.get())
+                .add(ModBlocks.BASIC_ENERGY_CELL.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.COPPER_FLUID_TANK.get())
-                .add(ModBlocks.IRON_FLUID_TANK.get())
-                .add(ModBlocks.COPPER_BATTERY.get())
-                .add(ModBlocks.IRON_BATTERY.get());
-
-        this.tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.GOLD_FLUID_TANK.get())
-                .add(ModBlocks.DIAMOND_FLUID_TANK.get())
-                .add(ModBlocks.GOLD_BATTERY.get())
-                .add(ModBlocks.DIAMOND_BATTERY.get());
-
-        this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.TITANIUM_BLOCK.get())
-                .add(ModBlocks.TITANIUM_FLUID_TANK.get())
-                .add(ModBlocks.TITANIUM_BATTERY.get());
+                .add(ModBlocks.BASIC_FLUID_TANK.get())
+                .add(ModBlocks.BASIC_ENERGY_CELL.get());
     }
 }

@@ -77,7 +77,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName () {
-        return Component.literal(getFluidTankBlock().getNameOfBlock() + "Fluid Tank");
+        return Component.literal(getFluidTankBlock().getNameOfBlock());
     }
 
     @Override
@@ -95,15 +95,15 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick (Level lvl, BlockPos blockPos, BlockState blockState){
-        if (hasFluidItemInFirstSlot() && canInsertHandler()) {
+        if (hasFluidItemInFirstSlot() && canUseItemInInputSlot()) {
             transferFluidToTank();
         }
 
-        if (hasFluidHandlerInFirstSlot() && canInsertFluidItem()) {
-            transferFluidFromTankToHandler();
+        if (hasEmptyFluidItemInFirstSlot() && canInsertItemInOutputSlot()) {
+            transferFluidFromTankToItem();
         }
 
-        pushFluidToAboveNeighbor();
+        pushFluidToBelowNeighbor();
     }
 
     private boolean canInsertResult (ItemStack result){
@@ -116,11 +116,11 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return output.getCount() + result.getCount() <= output.getMaxStackSize();
     }
 
-    private boolean canInsertFluidItem () {
+    private boolean canInsertItemInOutputSlot() {
         return itemHandler.getStackInSlot(1).isEmpty();
     }
 
-    private boolean canInsertHandler () {
+    private boolean canUseItemInInputSlot() {
         ItemStack input = itemHandler.getStackInSlot(0);
         FluidActionResult result = FluidUtil.tryEmptyContainer(input, FLUID_TANK, Integer.MAX_VALUE, null, false);
 
@@ -128,14 +128,14 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return canInsertResult(result.result);
     }
 
-    private void pushFluidToAboveNeighbor ()
-    { //push fluid from tank into the block above for example into a generator that uses a specific fluid
-        FluidUtil.getFluidHandler(level, worldPosition.above(), null).ifPresent(iFluidHandler -> {
+    private void pushFluidToBelowNeighbor()
+    { //push fluid from tank into the block below for example into a generator that uses a specific fluid
+        FluidUtil.getFluidHandler(level, worldPosition.below(), null).ifPresent(iFluidHandler -> {
             FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, maxTransfer, true);
         });
     }
 
-    private void transferFluidFromTankToHandler () { //transfer fluid from tank into the fluid handler item
+    private void transferFluidFromTankToItem() { //transfer fluid from tank into the fluid handler item
         FluidActionResult result = FluidUtil.tryFillContainer(itemHandler.getStackInSlot(0), this.FLUID_TANK, Integer.MAX_VALUE, null, true);
         if (result.result != ItemStack.EMPTY) {
             itemHandler.getStackInSlot(0).shrink(1);
@@ -143,7 +143,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    private boolean hasFluidHandlerInFirstSlot ()
+    private boolean hasEmptyFluidItemInFirstSlot()
     { //if second slot has a fluid handler item for example an empty bucket
         return !itemHandler.getStackInSlot(0).isEmpty()
                 && itemHandler.getStackInSlot(0).getCapability(Capabilities.FluidHandler.ITEM, null) != null

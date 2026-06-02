@@ -1,8 +1,7 @@
 package de.davarava.extrapower.screen.custom;
 
-import de.davarava.extrapower.block.custom.BatteryBlock;
-import de.davarava.extrapower.block.custom.FluidTankBlock;
-import de.davarava.extrapower.block.entity.custom.BatteryBlockEntity;
+import de.davarava.extrapower.block.custom.EnergyCellBlock;
+import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,18 +14,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class BatteryMenu extends AbstractContainerMenu {
-    public final BatteryBlockEntity blockEntity;
+public class EnergyCellMenu extends AbstractContainerMenu {
+    public final EnergyCellBlockEntity blockEntity;
     private final Level level;
 
-    public BatteryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public EnergyCellMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
-    public BatteryMenu(int pContainerId, Inventory inv, BlockEntity blockEntity) {
-        super(ModMenuTypes.BATTERY_MENU.get(), pContainerId);
+    public EnergyCellMenu(int pContainerId, Inventory inv, BlockEntity blockEntity) {
+        super(ModMenuTypes.ENERGY_CELL_MENU.get(), pContainerId);
 
-        this.blockEntity = ((BatteryBlockEntity) blockEntity);
+        this.blockEntity = ((EnergyCellBlockEntity) blockEntity);
         this.level = inv.player.level();
 
         addPlayerInventory(inv);
@@ -79,7 +78,7 @@ public class BatteryMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         Block block = level.getBlockState(blockEntity.getBlockPos()).getBlock();
-        if(block instanceof BatteryBlock){
+        if(block instanceof EnergyCellBlock){
             return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                     pPlayer, block);
         }

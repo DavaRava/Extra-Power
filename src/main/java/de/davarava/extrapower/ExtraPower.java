@@ -62,24 +62,8 @@ public class ExtraPower {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(ModBlocks.COPPER_FLUID_TANK);
-            event.accept(ModBlocks.IRON_FLUID_TANK);
-            event.accept(ModBlocks.GOLD_FLUID_TANK);
-            event.accept(ModBlocks.DIAMOND_FLUID_TANK);
-            event.accept(ModBlocks.TITANIUM_FLUID_TANK);
-
-            event.accept(ModBlocks.COPPER_BATTERY);
-            event.accept(ModBlocks.IRON_BATTERY);
-            event.accept(ModBlocks.GOLD_BATTERY);
-            event.accept(ModBlocks.DIAMOND_BATTERY);
-            event.accept(ModBlocks.TITANIUM_BATTERY);
-        }
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.TITANIUM_BLOCK);
-        }
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.TITANIUM_INGOT);
-            event.accept(ModItems.TITANIUM_NUGGET);
+            event.accept(ModBlocks.BASIC_FLUID_TANK);
+            event.accept(ModBlocks.BASIC_ENERGY_CELL);
         }
     }
 

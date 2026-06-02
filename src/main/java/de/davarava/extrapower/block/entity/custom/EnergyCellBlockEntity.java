@@ -1,10 +1,9 @@
 package de.davarava.extrapower.block.entity.custom;
 
-import de.davarava.extrapower.block.custom.BatteryBlock;
+import de.davarava.extrapower.block.custom.EnergyCellBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.energy.ModEnergyStorage;
-import de.davarava.extrapower.screen.custom.BatteryMenu;
-import de.davarava.extrapower.screen.custom.FluidTankMenu;
+import de.davarava.extrapower.screen.custom.EnergyCellMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -23,9 +22,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
-public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
-    public final int capacity = getBatteryBlock().getCapacity();
-    private final int maxTransfer = getBatteryBlock().getMaxTransfer();
+public class EnergyCellBlockEntity extends BlockEntity implements MenuProvider {
+    public final int capacity = getEnergyCellBlock().getCapacity();
+    private final int maxTransfer = getEnergyCellBlock().getMaxTransfer();
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
@@ -38,7 +37,7 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
         };
     }
 
-    public BatteryBlockEntity(BlockPos pos, BlockState blockState) {
+    public EnergyCellBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.BATTERY_BE.get(), pos, blockState);
     }
 
@@ -46,32 +45,32 @@ public class BatteryBlockEntity extends BlockEntity implements MenuProvider {
         return ENERGY_STORAGE;
     }
 
-    private BatteryBlock getBatteryBlock(){
-        return ((BatteryBlock) this.getBlockState().getBlock());
+    private EnergyCellBlock getEnergyCellBlock(){
+        return ((EnergyCellBlock) this.getBlockState().getBlock());
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getBatteryBlock().getNameOfBlock() + "Battery");
+        return Component.literal(getEnergyCellBlock().getNameOfBlock());
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        return new BatteryMenu(containerId, playerInventory, this);
+        return new EnergyCellMenu(containerId, playerInventory, this);
     }
 
     // Synchronisation
 
     @Override
     protected void saveAdditional (CompoundTag tag, HolderLookup.Provider registries){
-        tag.putInt("battery.energy", ENERGY_STORAGE.getEnergyStored());
+        tag.putInt("energy_cell.energy", ENERGY_STORAGE.getEnergyStored());
         super.saveAdditional(tag, registries);
     }
 
     @Override
     protected void loadAdditional (CompoundTag tag, HolderLookup.Provider registries){
         super.loadAdditional(tag, registries);
-        ENERGY_STORAGE.setEnergy(tag.getInt("battery.energy"));
+        ENERGY_STORAGE.setEnergy(tag.getInt("energy_cell.energy"));
     }
 
     @Override

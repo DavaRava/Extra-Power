@@ -2,7 +2,7 @@ package de.davarava.extrapower.event;
 
 import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
-import de.davarava.extrapower.block.entity.custom.BatteryBlockEntity;
+import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
 import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -14,6 +14,6 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.FLUID_TANK_BE.get(), FluidTankBlockEntity::getTank);
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.BATTERY_BE.get(), BatteryBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ENERGY_CELL_BE.get(), EnergyCellBlockEntity::getEnergyStorage);
     }
 }

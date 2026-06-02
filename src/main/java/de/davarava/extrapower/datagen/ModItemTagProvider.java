@@ -26,12 +26,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-       ResourceLocation IngotsResLoc = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "ingots");
-       this.tag(TagKey.create(ResourceKey.create(ResourceKey.createRegistryKey(IngotsResLoc), IngotsResLoc), IngotsResLoc))
-               .add(ModItems.TITANIUM_INGOT.get())
-               .add(Items.COPPER_INGOT)
-               .add(Items.IRON_INGOT)
-               .add(Items.GOLD_INGOT)
-               .add(Items.NETHERITE_INGOT);
+
     }
 }

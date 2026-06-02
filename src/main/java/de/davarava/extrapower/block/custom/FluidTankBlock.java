@@ -42,45 +42,23 @@ public class FluidTankBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+    //
+
     public String getNameOfBlock(){
-        if(this.equals(ModBlocks.COPPER_FLUID_TANK.get())){
-            return "Copper ";
-        } else if(this.equals(ModBlocks.IRON_FLUID_TANK.get())){
-            return "Iron ";
-        } else if(this.equals(ModBlocks.GOLD_FLUID_TANK.get())){
-            return "Gold ";
-        } else if(this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())){
-            return "Diamond ";
-        } else if(this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())){
-            return "Titanium  ";
+        if(this.equals(ModBlocks.BASIC_FLUID_TANK.get())){
+            return "Basic Fluid Tank";
         }
         return null;
     }
     public int getCapacity() {
-        if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
-            return 8000;
-        } else if (this.equals(ModBlocks.IRON_FLUID_TANK.get())) {
+        if (this.equals(ModBlocks.BASIC_FLUID_TANK.get())) {
             return 16000;
-        } else if (this.equals(ModBlocks.GOLD_FLUID_TANK.get())) {
-            return 32000;
-        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
-            return 64000;
-        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
-            return 128000;
         }
         return 0;
     }
     public int getMaxTransfer() {
-        if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
-            return 250;
-        } else if (this.equals(ModBlocks.IRON_FLUID_TANK.get())) {
+        if (this.equals(ModBlocks.BASIC_FLUID_TANK.get())) {
             return 500;
-        } else if (this.equals(ModBlocks.GOLD_FLUID_TANK.get())) {
-            return 1000;
-        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
-            return 2000;
-        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
-            return 4000;
         }
         return 0;
     }
@@ -102,7 +80,7 @@ public class FluidTankBlock extends BaseEntityBlock {
         if(!level.isClientSide){
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if(blockEntity instanceof FluidTankBlockEntity fluidTankBlockEntity){
-                player.openMenu(new SimpleMenuProvider(fluidTankBlockEntity, Component.literal(  getNameOfBlock() + "Fluid Tank")), pos);
+                player.openMenu(new SimpleMenuProvider(fluidTankBlockEntity, Component.literal(getNameOfBlock())), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -128,7 +106,7 @@ public class FluidTankBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(Component.literal("§3Capacity: §7" + formatNumber(getCapacity()) + " §omB"));
+        tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §omB"));
     }
 
     private String formatNumber(int number) {

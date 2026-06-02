@@ -3,7 +3,6 @@ package de.davarava.extrapower.screen.custom;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.screen.renderer.EnergyDisplayTooltipArea;
-import de.davarava.extrapower.screen.renderer.FluidTankRenderer;
 import de.davarava.extrapower.util.MouseUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -11,17 +10,15 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.TooltipFlag;
-import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.Optional;
 
-public class BatteryScreen extends AbstractContainerScreen<BatteryMenu> {
+public class EnergyCellScreen extends AbstractContainerScreen<EnergyCellMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/battery/battery_gui.png");
+            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/energy_cell/energy_cell_gui.png");
     private EnergyDisplayTooltipArea energyInfoArea;
 
-    public BatteryScreen(BatteryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public EnergyCellScreen(EnergyCellMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 

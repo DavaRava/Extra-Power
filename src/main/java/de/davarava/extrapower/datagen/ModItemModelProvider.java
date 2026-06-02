@@ -13,7 +13,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(ModItems.TITANIUM_INGOT.get());
-        basicItem(ModItems.TITANIUM_NUGGET.get());
+
     }
 }

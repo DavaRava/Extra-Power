@@ -4,11 +4,10 @@ import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.renderer.FluidTankBlockEntityRenderer;
 import de.davarava.extrapower.screen.ModMenuTypes;
-import de.davarava.extrapower.screen.custom.BatteryScreen;
+import de.davarava.extrapower.screen.custom.EnergyCellScreen;
 import de.davarava.extrapower.screen.custom.FluidTankScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -35,17 +34,13 @@ public class ExtraPowerClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.COPPER_FLUID_TANK.get(), RenderType.TRANSLUCENT);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.IRON_FLUID_TANK.get(), RenderType.TRANSLUCENT);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GOLD_FLUID_TANK.get(), RenderType.TRANSLUCENT);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DIAMOND_FLUID_TANK.get(), RenderType.TRANSLUCENT);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TITANIUM_FLUID_TANK.get(), RenderType.TRANSLUCENT);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.BASIC_FLUID_TANK.get(), RenderType.TRANSLUCENT);
     }
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event){
         event.register(ModMenuTypes.FLUID_TANK_MENU.get(), FluidTankScreen::new);
-        event.register(ModMenuTypes.BATTERY_MENU.get(), BatteryScreen::new);
+        event.register(ModMenuTypes.ENERGY_CELL_MENU.get(), EnergyCellScreen::new);
     }
 
     @SubscribeEvent

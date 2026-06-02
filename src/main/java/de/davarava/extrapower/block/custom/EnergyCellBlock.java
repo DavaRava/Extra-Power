@@ -2,7 +2,7 @@ package de.davarava.extrapower.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import de.davarava.extrapower.block.ModBlocks;
-import de.davarava.extrapower.block.entity.custom.BatteryBlockEntity;
+import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -26,11 +26,11 @@ import org.jetbrains.annotations.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class BatteryBlock extends BaseEntityBlock {
+public class EnergyCellBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final MapCodec<BatteryBlock> CODEC = simpleCodec(BatteryBlock::new);
+    public static final MapCodec<EnergyCellBlock> CODEC = simpleCodec(EnergyCellBlock::new);
 
-    public BatteryBlock(Properties properties) {
+    public EnergyCellBlock(Properties properties) {
         super(properties);
     }
 
@@ -69,44 +69,20 @@ public class BatteryBlock extends BaseEntityBlock {
     //
 
     public String getNameOfBlock(){
-        if(this.equals(ModBlocks.COPPER_BATTERY.get())){
-            return "Copper ";
-        } else if(this.equals(ModBlocks.IRON_BATTERY.get())){
-            return "Iron ";
-        } else if(this.equals(ModBlocks.GOLD_BATTERY.get())){
-            return "Gold ";
-        } else if(this.equals(ModBlocks.DIAMOND_BATTERY.get())){
-            return "Diamond ";
-        } else if(this.equals(ModBlocks.TITANIUM_BATTERY.get())){
-            return "Titanium  ";
+        if(this.equals(ModBlocks.BASIC_ENERGY_CELL.get())){
+            return "Basic Energy Cell";
         }
         return null;
     }
     public int getCapacity() {
-        if (this.equals(ModBlocks.COPPER_BATTERY.get())) {
-            return 8000;
-        } else if (this.equals(ModBlocks.IRON_BATTERY.get())) {
-            return 16000;
-        } else if (this.equals(ModBlocks.GOLD_BATTERY.get())) {
+        if(this.equals(ModBlocks.BASIC_ENERGY_CELL.get())){
             return 32000;
-        } else if (this.equals(ModBlocks.DIAMOND_BATTERY.get())) {
-            return 64000;
-        } else if (this.equals(ModBlocks.TITANIUM_BATTERY.get())) {
-            return 128000;
         }
         return 0;
     }
     public int getMaxTransfer() {
-        if (this.equals(ModBlocks.COPPER_BATTERY.get())) {
-            return 500;
-        } else if (this.equals(ModBlocks.IRON_BATTERY.get())) {
+        if (this.equals(ModBlocks.BASIC_ENERGY_CELL.get())) {
             return 1000;
-        } else if (this.equals(ModBlocks.GOLD_BATTERY.get())) {
-            return 2000;
-        } else if (this.equals(ModBlocks.DIAMOND_BATTERY.get())) {
-            return 4000;
-        } else if (this.equals(ModBlocks.TITANIUM_BATTERY.get())) {
-            return 8000;
         }
         return 0;
     }
@@ -115,8 +91,8 @@ public class BatteryBlock extends BaseEntityBlock {
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(!level.isClientSide){
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if(blockEntity instanceof BatteryBlockEntity batteryBlockEntity){
-                player.openMenu(new SimpleMenuProvider(batteryBlockEntity, Component.literal(  getNameOfBlock() + "Battery")), pos);
+            if(blockEntity instanceof EnergyCellBlockEntity batteryBlockEntity){
+                player.openMenu(new SimpleMenuProvider(batteryBlockEntity, Component.literal(getNameOfBlock())), pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -127,7 +103,7 @@ public class BatteryBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new BatteryBlockEntity(pos, state);
+        return new EnergyCellBlockEntity(pos, state);
     }
 
     @Override
