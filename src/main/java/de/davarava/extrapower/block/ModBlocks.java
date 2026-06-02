@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExtraPower.MODID);
 
+    // Fluid Tanks
     public static final DeferredBlock<Block> COPPER_FLUID_TANK = registerBlock("copper_fluid_tank",
             () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(1.5f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -34,6 +35,7 @@ public class ModBlocks {
             () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(4f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
+    // Battery Blocks
     public static final DeferredBlock<Block> COPPER_BATTERY = registerBlock("copper_battery",
             () -> new BatteryBlock(BlockBehaviour.Properties.of().strength(3f, 6f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops()));

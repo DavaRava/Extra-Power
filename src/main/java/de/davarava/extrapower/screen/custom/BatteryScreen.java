@@ -2,6 +2,7 @@ package de.davarava.extrapower.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.davarava.extrapower.ExtraPower;
+import de.davarava.extrapower.screen.renderer.EnergyDisplayTooltipArea;
 import de.davarava.extrapower.screen.renderer.FluidTankRenderer;
 import de.davarava.extrapower.util.MouseUtil;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,12 +16,12 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.Optional;
 
-public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
+public class BatteryScreen extends AbstractContainerScreen<BatteryMenu> {
     private static final ResourceLocation GUI_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/fluid_tank/fluid_tank_gui.png");
-    private FluidTankRenderer fluidRenderer;
+            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/battery/battery_gui.png");
+    private EnergyDisplayTooltipArea energyInfoArea;
 
-    public FluidTankScreen(FluidTankMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public BatteryScreen(BatteryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -28,18 +29,18 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
     protected void init() {
         super.init();
 
-        assignFluidRenderer();
+        assignEnergyInfoArea();
     }
 
-    private void assignFluidRenderer() {
-        fluidRenderer = new FluidTankRenderer(menu.blockEntity.capacity, true, 52, 52);
+    private void assignEnergyInfoArea() {
+        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 62,
+                ((height - imageHeight) / 2) + 17, menu.blockEntity.getEnergyStorage(null), 52, 52);
     }
 
-    private void renderFluidTooltipArea(GuiGraphics guiGraphics, int pMouseX, int pMouseY, int x, int y,
-                                        FluidStack stack, int offsetX, int offsetY, FluidTankRenderer renderer) {
-        if(isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, renderer)) {
-            guiGraphics.renderTooltip(this.font, renderer.getTooltip(stack, TooltipFlag.Default.NORMAL),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
+    private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if(isMouseAboveArea(mouseX, mouseY, x, y, 62, 17, 52, 52)) {
+            guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
+                    Optional.empty(), mouseX - x, mouseY - y);
         }
     }
 
@@ -49,7 +50,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        renderFluidTooltipArea(guiGraphics, pMouseX, pMouseY, x, y, menu.blockEntity.getFluid(), 80, 17, fluidRenderer);
+        renderEnergyAreaTooltip(guiGraphics, pMouseX, pMouseY, x, y);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        fluidRenderer.render(guiGraphics, x + 80, y + 17, menu.blockEntity.getFluid());
+        energyInfoArea.render(guiGraphics);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, FluidTankRenderer renderer) {
-        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, renderer.getWidth(), renderer.getHeight());
+    public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+        return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
     }
 }

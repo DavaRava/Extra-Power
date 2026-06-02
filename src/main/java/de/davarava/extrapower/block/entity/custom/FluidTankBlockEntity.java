@@ -1,6 +1,5 @@
 package de.davarava.extrapower.block.entity.custom;
 
-import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.custom.FluidTankBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.screen.custom.FluidTankMenu;
@@ -34,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     public final int capacity = getFluidTankBlock().getCapacity();
+    private final int maxTransfer = getFluidTankBlock().getMaxTransfer();
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
@@ -131,7 +131,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     private void pushFluidToAboveNeighbor ()
     { //push fluid from tank into the block above for example into a generator that uses a specific fluid
         FluidUtil.getFluidHandler(level, worldPosition.above(), null).ifPresent(iFluidHandler -> {
-            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, getFluidTankBlock().getFlowRate(), true);
+            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, maxTransfer, true);
         });
     }
 

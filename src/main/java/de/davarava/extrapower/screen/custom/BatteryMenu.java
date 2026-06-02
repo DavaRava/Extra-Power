@@ -1,8 +1,8 @@
 package de.davarava.extrapower.screen.custom;
 
-import de.davarava.extrapower.block.ModBlocks;
+import de.davarava.extrapower.block.custom.BatteryBlock;
 import de.davarava.extrapower.block.custom.FluidTankBlock;
-import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
+import de.davarava.extrapower.block.entity.custom.BatteryBlockEntity;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,32 +14,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.items.SlotItemHandler;
 
-public class FluidTankMenu extends AbstractContainerMenu {
-    public final FluidTankBlockEntity blockEntity;
+public class BatteryMenu extends AbstractContainerMenu {
+    public final BatteryBlockEntity blockEntity;
     private final Level level;
 
-    public FluidTankMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public BatteryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
-    public FluidTankMenu(int pContainerId, Inventory inv, BlockEntity blockEntity) {
-        super(ModMenuTypes.FLUID_TANK_MENU.get(), pContainerId);
-        checkContainerSize(inv, 2);
-        this.blockEntity = ((FluidTankBlockEntity) blockEntity);
+    public BatteryMenu(int pContainerId, Inventory inv, BlockEntity blockEntity) {
+        super(ModMenuTypes.BATTERY_MENU.get(), pContainerId);
+
+        this.blockEntity = ((BatteryBlockEntity) blockEntity);
         this.level = inv.player.level();
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
-
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 44, 17));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 44, 53) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return false;
-            }
-        });
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;
@@ -51,7 +42,7 @@ public class FluidTankMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 0;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -88,7 +79,7 @@ public class FluidTankMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         Block block = level.getBlockState(blockEntity.getBlockPos()).getBlock();
-        if(block instanceof FluidTankBlock){
+        if(block instanceof BatteryBlock){
             return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                     pPlayer, block);
         }

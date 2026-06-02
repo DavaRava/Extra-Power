@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "extrapower:block/gold_battery",
+      "y": 90
+    },
+    "facing=north": {
       "model": "extrapower:block/gold_battery"
+    },
+    "facing=south": {
+      "model": "extrapower:block/gold_battery",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "extrapower:block/gold_battery",
+      "y": 270
     }
   }
 }

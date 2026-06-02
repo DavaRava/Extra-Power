@@ -4,6 +4,7 @@ import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.renderer.FluidTankBlockEntityRenderer;
 import de.davarava.extrapower.screen.ModMenuTypes;
+import de.davarava.extrapower.screen.custom.BatteryScreen;
 import de.davarava.extrapower.screen.custom.FluidTankScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -44,6 +45,7 @@ public class ExtraPowerClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event){
         event.register(ModMenuTypes.FLUID_TANK_MENU.get(), FluidTankScreen::new);
+        event.register(ModMenuTypes.BATTERY_MENU.get(), BatteryScreen::new);
     }
 
     @SubscribeEvent

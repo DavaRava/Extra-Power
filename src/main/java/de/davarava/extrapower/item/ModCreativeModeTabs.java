@@ -17,13 +17,8 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> EXTRAPOWER_TAB =
             CREATIVE_MODE_TABS.register("extrapower_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("tab.extrapower"))
-                    .icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
+                    .icon(() -> new ItemStack(ModBlocks.TITANIUM_BATTERY))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.TITANIUM_INGOT);
-                        pOutput.accept(ModItems.TITANIUM_NUGGET);
-
-                        pOutput.accept(ModBlocks.TITANIUM_BLOCK);
-
                         pOutput.accept(ModBlocks.COPPER_FLUID_TANK);
                         pOutput.accept(ModBlocks.IRON_FLUID_TANK);
                         pOutput.accept(ModBlocks.GOLD_FLUID_TANK);
@@ -35,6 +30,10 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.GOLD_BATTERY);
                         pOutput.accept(ModBlocks.DIAMOND_BATTERY);
                         pOutput.accept(ModBlocks.TITANIUM_BATTERY);
+
+                        pOutput.accept(ModItems.TITANIUM_INGOT);
+                        pOutput.accept(ModItems.TITANIUM_NUGGET);
+                        pOutput.accept(ModBlocks.TITANIUM_BLOCK);
                     }).build());
 
     public static void register(IEventBus eventBus) {

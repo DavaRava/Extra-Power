@@ -56,7 +56,6 @@ public class FluidTankBlock extends BaseEntityBlock {
         }
         return null;
     }
-
     public int getCapacity() {
         if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
             return 8000;
@@ -71,17 +70,17 @@ public class FluidTankBlock extends BaseEntityBlock {
         }
         return 0;
     }
-    public int getFlowRate () {
+    public int getMaxTransfer() {
         if (this.equals(ModBlocks.COPPER_FLUID_TANK.get())) {
             return 250;
         } else if (this.equals(ModBlocks.IRON_FLUID_TANK.get())) {
             return 500;
         } else if (this.equals(ModBlocks.GOLD_FLUID_TANK.get())) {
-            return 750;
-        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
             return 1000;
-        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
+        } else if (this.equals(ModBlocks.DIAMOND_FLUID_TANK.get())) {
             return 2000;
+        } else if (this.equals(ModBlocks.TITANIUM_FLUID_TANK.get())) {
+            return 4000;
         }
         return 0;
     }
@@ -129,7 +128,7 @@ public class FluidTankBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §lmB"));
+        tooltipComponents.add(Component.literal("§3Capacity: §7" + formatNumber(getCapacity()) + " §omB"));
     }
 
     private String formatNumber(int number) {

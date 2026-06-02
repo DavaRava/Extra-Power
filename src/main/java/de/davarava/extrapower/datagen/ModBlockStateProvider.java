@@ -3,6 +3,7 @@ package de.davarava.extrapower.datagen;
 import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.block.ModBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -15,10 +16,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlockWithItem(ModBlocks.TITANIUM_BLOCK.get(), cubeAll(ModBlocks.TITANIUM_BLOCK.get()));
 
-        simpleBlockWithItem(ModBlocks.COPPER_BATTERY.get(), cubeAll(ModBlocks.COPPER_BATTERY.get()));
-        simpleBlockWithItem(ModBlocks.IRON_BATTERY.get(), cubeAll(ModBlocks.IRON_BATTERY.get()));
-        simpleBlockWithItem(ModBlocks.GOLD_BATTERY.get(), cubeAll(ModBlocks.GOLD_BATTERY.get()));
-        simpleBlockWithItem(ModBlocks.DIAMOND_BATTERY.get(), cubeAll(ModBlocks.DIAMOND_BATTERY.get()));
-        simpleBlockWithItem(ModBlocks.TITANIUM_BATTERY.get(), cubeAll(ModBlocks.TITANIUM_BATTERY.get()));
+        horizontalBlockWithItem(ModBlocks.COPPER_BATTERY.get());
+        horizontalBlockWithItem(ModBlocks.IRON_BATTERY.get());
+        horizontalBlockWithItem(ModBlocks.GOLD_BATTERY.get());
+        horizontalBlockWithItem(ModBlocks.DIAMOND_BATTERY.get());
+        horizontalBlockWithItem(ModBlocks.TITANIUM_BATTERY.get());
+    }
+
+    private void horizontalBlockWithItem(Block block){
+        horizontalBlock(block, cubeAll(block));
+        simpleBlockItem(block, cubeAll(block));
     }
 }
