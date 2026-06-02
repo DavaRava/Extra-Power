@@ -27,6 +27,7 @@ public class EnergyCellScreen extends AbstractContainerScreen<EnergyCellMenu> {
         super.init();
 
         assignEnergyInfoArea();
+        this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
     }
 
     private void assignEnergyInfoArea() {

@@ -29,6 +29,7 @@ public class FluidTankScreen extends AbstractContainerScreen<FluidTankMenu> {
         super.init();
 
         assignFluidRenderer();
+        this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
     }
 
     private void assignFluidRenderer() {
