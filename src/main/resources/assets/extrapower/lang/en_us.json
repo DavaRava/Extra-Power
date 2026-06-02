@@ -7,7 +7,7 @@
   "extrapower.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "extrapower.tooltip.liquid.amount": "%s mB",
 
-  "extrapower.tooltip.energy.amount.with.capacity": "%s / %s EP",
+  "extrapower.tooltip.energy.amount.with.capacity": "%s / %s FE",
 
   "tab.extrapower": "Extra Power"
 }
