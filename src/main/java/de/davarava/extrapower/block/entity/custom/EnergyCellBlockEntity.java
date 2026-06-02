@@ -38,7 +38,7 @@ public class EnergyCellBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public EnergyCellBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.BATTERY_BE.get(), pos, blockState);
+        super(ModBlockEntities.ENERGY_CELL_BE.get(), pos, blockState);
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
