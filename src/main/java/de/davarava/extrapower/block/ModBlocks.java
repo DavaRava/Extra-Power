@@ -28,6 +28,11 @@ public class ModBlocks {
             () -> new EnergyCellBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops()));
 
+    // Solar Panels
+    public static final DeferredBlock<Block> BASIC_SOLAR_PANEL = registerBlock("basic_solar_panel",
+            () -> new EnergyCellBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
+                    .sound(SoundType.STONE).requiresCorrectToolForDrops()));
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

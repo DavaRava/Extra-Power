@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "extrapower:block/basic_solar_panel"
+    }
+  }
+}

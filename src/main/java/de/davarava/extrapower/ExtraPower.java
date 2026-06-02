@@ -64,6 +64,7 @@ public class ExtraPower {
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
             event.accept(ModBlocks.BASIC_FLUID_TANK);
             event.accept(ModBlocks.BASIC_ENERGY_CELL);
+            event.accept(ModBlocks.BASIC_SOLAR_PANEL);
         }
     }
 

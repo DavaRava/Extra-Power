@@ -23,10 +23,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.BASIC_FLUID_TANK.get())
-                .add(ModBlocks.BASIC_ENERGY_CELL.get());
+                .add(ModBlocks.BASIC_ENERGY_CELL.get())
+                .add(ModBlocks.BASIC_SOLAR_PANEL.get());
+
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.BASIC_FLUID_TANK.get())
-                .add(ModBlocks.BASIC_ENERGY_CELL.get());
+                .add(ModBlocks.BASIC_ENERGY_CELL.get())
+                .add(ModBlocks.BASIC_SOLAR_PANEL.get());
     }
 }

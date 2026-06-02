@@ -22,7 +22,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.BASIC_FLUID_TANK)
                 .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .pattern("ACA").define('B', Items.GLASS).unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
+                .pattern("ACA").define('B', Tags.Items.GLASS_BLOCKS).unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
                 .pattern("ABA").define('C', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
                 .group("fluid_tanks").save(pRecipeOutput);
 
@@ -31,5 +31,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BCB").define('B', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
                 .pattern("ABA").define('C', Items.GOLD_INGOT).unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
                 .group("energy_cells").save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.BASIC_SOLAR_PANEL)
+                .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .pattern("BCB").define('B', Tags.Items.GLASS_BLOCKS).unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
+                .pattern("ABA").define('C', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
+                .group("solar_panels").save(pRecipeOutput);
     }
 }

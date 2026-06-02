@@ -1,6 +1,7 @@
 {
   "values": [
     "extrapower:basic_fluid_tank",
-    "extrapower:basic_energy_cell"
+    "extrapower:basic_energy_cell",
+    "extrapower:basic_solar_panel"
   ]
 }

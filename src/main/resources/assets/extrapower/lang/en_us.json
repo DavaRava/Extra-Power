@@ -3,6 +3,7 @@
 
   "block.extrapower.basic_energy_cell": "Basic Energy Cell",
 
+  "block.extrapower.basic_solar_panel": "Basic Solar Panel",
 
   "extrapower.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "extrapower.tooltip.liquid.amount": "%s mB",
