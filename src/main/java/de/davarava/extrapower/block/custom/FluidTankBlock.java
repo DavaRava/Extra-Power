@@ -58,7 +58,7 @@ public class FluidTankBlock extends BaseEntityBlock {
     }
     public int getMaxTransfer() {
         if (this.equals(ModBlocks.BASIC_FLUID_TANK.get())) {
-            return 500;
+            return 250;
         }
         return 0;
     }

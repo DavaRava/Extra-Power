@@ -14,21 +14,28 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class SolarPanelBlock extends BaseEntityBlock {
     public static final MapCodec<SolarPanelBlock> CODEC = simpleCodec(SolarPanelBlock::new);
+    private static final VoxelShape SHAPE = Block.box(0,0,0,16,5,16);
+
     public SolarPanelBlock(Properties properties) {
         super(properties);
     }
@@ -36,6 +43,11 @@ public class SolarPanelBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
     @Override
@@ -53,19 +65,19 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
     public int getCapacity() {
         if (this.equals(ModBlocks.BASIC_SOLAR_PANEL.get())) {
-            return 4000;
+            return 1000;
         }
         return 0;
     }
     public int getMaxTransfer() {
         if (this.equals(ModBlocks.BASIC_SOLAR_PANEL.get())) {
-            return 100;
+            return 20;
         }
         return 0;
     }
     public int getProductionRate() {
         if (this.equals(ModBlocks.BASIC_SOLAR_PANEL.get())) {
-            return 10;
+            return 8;
         }
         return 0;
     }
@@ -88,7 +100,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §oFE"));
-        tooltipComponents.add(Component.literal("§Produces: §7" + formatNumber(getProductionRate()) + " §oFE/t"));
+        tooltipComponents.add(Component.literal("§dProduces: §7" + formatNumber(getProductionRate()) + " §oFE/t"));
         tooltipComponents.add(Component.literal("§dTransfer: §7" + formatNumber(getMaxTransfer()) + " §oFE/t"));
     }
 

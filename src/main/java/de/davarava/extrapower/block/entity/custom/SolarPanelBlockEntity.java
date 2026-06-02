@@ -3,6 +3,7 @@ package de.davarava.extrapower.block.entity.custom;
 import de.davarava.extrapower.block.custom.SolarPanelBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.energy.ModEnergyStorage;
+import de.davarava.extrapower.block.entity.energy.ModEnergyUtil;
 import de.davarava.extrapower.screen.custom.FluidTankMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -57,24 +58,25 @@ public class SolarPanelBlockEntity extends BlockEntity {
 
     public void tick (Level lvl, BlockPos blockPos, BlockState blockState){
         if(lvl.canSeeSky(blockPos) && lvl.isDay()){
-            generateEnergy(lvl);
+            generateEnergy(lvl, blockPos);
         }
         pushEnergyToBelowNeighbor(lvl, blockPos);
-        System.out.println(getEnergyStorage(null).getEnergyStored());
     }
 
-    private void generateEnergy(Level lvl) {
-        int produces = getSolarPanelBlock().getProductionRate();
+    private void generateEnergy(Level lvl, BlockPos pos) {
+        int toProduce = getSolarPanelBlock().getProductionRate();
 
-        if (lvl.isRaining()){
-            produces /= 2;
+        if (lvl.isRainingAt(pos.above())){
+            toProduce /= 2;
         }
 
-        ENERGY_STORAGE.receiveEnergy(produces, false);
+        ENERGY_STORAGE.receiveEnergy(toProduce, false);
     }
 
     private void pushEnergyToBelowNeighbor(Level level, BlockPos pos) {
-
+        if (ModEnergyUtil.doesBlockHaveEnergyStorage(pos.below(), level)) {
+            ModEnergyUtil.move(pos, pos.below(), getSolarPanelBlock().getMaxTransfer(), level);
+        }
     }
 
     // Synchronisation

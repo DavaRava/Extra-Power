@@ -5,7 +5,7 @@
 		"0": "extrapower:block/basic_solar_panel_bottom",
 		"1": "extrapower:block/basic_solar_panel_side",
 		"2": "extrapower:block/basic_solar_panel_top",
-		"particle": "extrapower:block/basic_solar_panel_bottom"
+		"particle": "extrapower:block/basic_solar_panel_top"
 	},
 	"elements": [
 		{
