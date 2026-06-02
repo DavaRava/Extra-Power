@@ -1,15 +1,6 @@
 {
   "values": [
-    "extrapower:copper_fluid_tank",
-    "extrapower:iron_fluid_tank",
-    "extrapower:gold_fluid_tank",
-    "extrapower:diamond_fluid_tank",
-    "extrapower:titanium_fluid_tank",
-    "extrapower:copper_battery",
-    "extrapower:iron_battery",
-    "extrapower:gold_battery",
-    "extrapower:diamond_battery",
-    "extrapower:titanium_battery",
-    "extrapower:titanium_block"
+    "extrapower:basic_fluid_tank",
+    "extrapower:basic_energy_cell"
   ]
 }
