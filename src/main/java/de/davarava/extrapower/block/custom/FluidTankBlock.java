@@ -107,6 +107,7 @@ public class FluidTankBlock extends BaseEntityBlock {
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §omB"));
+        tooltipComponents.add(Component.literal("§dTransfers: §7" + formatNumber(getMaxTransfer()) + " §omB/t"));
     }
 
     private String formatNumber(int number) {

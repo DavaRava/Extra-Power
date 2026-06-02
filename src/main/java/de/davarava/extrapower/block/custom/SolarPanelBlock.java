@@ -101,7 +101,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         tooltipComponents.add(Component.literal("§dCapacity: §7" + formatNumber(getCapacity()) + " §oFE"));
         tooltipComponents.add(Component.literal("§dProduces: §7" + formatNumber(getProductionRate()) + " §oFE/t"));
-        tooltipComponents.add(Component.literal("§dTransfer: §7" + formatNumber(getMaxTransfer()) + " §oFE/t"));
+        tooltipComponents.add(Component.literal("§dTransfers: §7" + formatNumber(getMaxTransfer()) + " §oFE/t"));
     }
 
     private String formatNumber(int number) {
