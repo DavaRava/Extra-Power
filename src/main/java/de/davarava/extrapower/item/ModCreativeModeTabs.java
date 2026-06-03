@@ -22,6 +22,8 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.BASIC_FLUID_TANK);
                         pOutput.accept(ModBlocks.BASIC_ENERGY_CELL);
                         pOutput.accept(ModBlocks.BASIC_SOLAR_PANEL);
+
+                        pOutput.accept(ModItems.SOLAR_PANEL);
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -61,11 +61,7 @@ public class ExtraPower {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(ModBlocks.BASIC_FLUID_TANK);
-            event.accept(ModBlocks.BASIC_ENERGY_CELL);
-            event.accept(ModBlocks.BASIC_SOLAR_PANEL);
-        }
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

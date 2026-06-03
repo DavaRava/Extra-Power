@@ -33,9 +33,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .group("energy_cells").save(pRecipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.BASIC_SOLAR_PANEL)
-                .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .pattern("BCB").define('B', Tags.Items.GLASS_BLOCKS).unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
-                .pattern("ABA").define('C', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
+                .pattern("ACA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .pattern("BBB").define('B', ModItems.SOLAR_PANEL).unlockedBy("has_solar_panel", has(ModItems.SOLAR_PANEL))
+                .pattern("ACA").define('C', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
                 .group("solar_panels").save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SOLAR_PANEL, 3)
+                .pattern("AAA").define('A', Tags.Items.GLASS_BLOCKS).unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
+                .pattern("BCB").define('B', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
+                .pattern("AAA").define('C', Items.DAYLIGHT_DETECTOR).unlockedBy("has_daylight_detector", has(Items.DAYLIGHT_DETECTOR))
+                .save(pRecipeOutput);
     }
 }
