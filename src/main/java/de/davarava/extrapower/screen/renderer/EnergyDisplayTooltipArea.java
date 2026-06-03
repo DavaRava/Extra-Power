@@ -1,9 +1,11 @@
 package de.davarava.extrapower.screen.renderer;
 
+import de.davarava.extrapower.ExtraPower;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidType;
 
@@ -21,6 +23,7 @@ import java.util.List;
  *  Slightly Modified Version by: Kaupenjoe
  */
 public class EnergyDisplayTooltipArea {
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, "textures/gui/energy_bar.png");
     private final int xPos;
     private final int yPos;
     private final int width;
@@ -53,8 +56,14 @@ public class EnergyDisplayTooltipArea {
     }
 
     public void render(GuiGraphics guiGraphics) {
-        int stored = (int)(height * (energy.getEnergyStored() / (float)energy.getMaxEnergyStored()));
-        guiGraphics.fillGradient(xPos,yPos + (height - stored),xPos + width,
-                yPos + height,0xffe74c3c, 0xff8b0000);
+        //int stored = (int)(height * (energy.getEnergyStored() / (float)energy.getMaxEnergyStored()));
+        //guiGraphics.fillGradient(xPos,yPos + (height - stored),xPos + width, yPos + height,0xffe74c3c, 0xff8b0000);
+
+        float percent = energy.getEnergyStored() / (float) energy.getMaxEnergyStored();
+        int filled = (int) (height * percent);
+
+        if (filled <= 0) return;
+
+        guiGraphics.blit(TEXTURE, xPos, yPos + (height - filled), 0, height - filled, width, filled, 16, 16);
     }
 }

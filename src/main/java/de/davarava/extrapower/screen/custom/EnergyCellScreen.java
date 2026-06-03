@@ -31,12 +31,12 @@ public class EnergyCellScreen extends AbstractContainerScreen<EnergyCellMenu> {
     }
 
     private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 62,
-                ((height - imageHeight) / 2) + 17, menu.blockEntity.getEnergyStorage(null), 52, 52);
+        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 80,
+                ((height - imageHeight) / 2) + 17, menu.blockEntity.getEnergyStorage(null), 16, 52);
     }
 
     private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        if(isMouseAboveArea(mouseX, mouseY, x, y, 62, 17, 52, 52)) {
+        if(isMouseAboveArea(mouseX, mouseY, x, y, 80, 17, 16, 52)) {
             guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
                     Optional.empty(), mouseX - x, mouseY - y);
         }
