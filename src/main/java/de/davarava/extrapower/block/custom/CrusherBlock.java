@@ -2,13 +2,16 @@ package de.davarava.extrapower.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import de.davarava.extrapower.block.ModBlocks;
+import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.custom.CrusherBlockEntity;
 import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
+import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.ai.goal.InteractGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,9 +20,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
@@ -29,6 +35,7 @@ import java.util.List;
 
 public class CrusherBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final MapCodec<CrusherBlock> CODEC = simpleCodec(CrusherBlock::new);
 
     public CrusherBlock(Properties properties) {
@@ -59,39 +66,41 @@ public class CrusherBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState()
+                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(LIT, false);
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, LIT);
     }
 
     //
 
     public String getNameOfBlock(){
-        if(this.equals(ModBlocks.CRUSHER.get())){
-            return "Crusher";
-        }
-        return null;
+        return "Crusher";
     }
     public int getCapacity() {
-        if(this.equals(ModBlocks.CRUSHER.get())){
-            return 8000;
-        }
-        return 0;
+        return 8000;
     }
     public int getMaxTransfer() {
-        if (this.equals(ModBlocks.CRUSHER.get())) {
-            return 100;
-        }
-        return 0;
+        return Integer.MAX_VALUE;
     }
     public int getUseRate() {
-        if (this.equals(ModBlocks.CRUSHER.get())) {
-            return 5;
+        return 25;
+    }
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if(state.getBlock() != newState.getBlock()){
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if(blockEntity instanceof CrusherBlockEntity crusherBlockEntity){
+                crusherBlockEntity.drops();
+            }
         }
-        return 0;
+
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override
@@ -111,6 +120,16 @@ public class CrusherBlock extends BaseEntityBlock {
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CrusherBlockEntity(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if(level.isClientSide()) {
+            return null;
+        }
+
+        return createTickerHelper(blockEntityType, ModBlockEntities.CRUSHER_BE.get(),
+                (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 
     @Override

@@ -4,6 +4,7 @@ import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.item.ModCreativeModeTabs;
 import de.davarava.extrapower.item.ModItems;
+import de.davarava.extrapower.recipe.ModRecipes;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import org.slf4j.Logger;
 
@@ -41,6 +42,8 @@ public class ExtraPower {
 
         ModMenuTypes.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

@@ -82,7 +82,7 @@ public class EnergyCellBlock extends BaseEntityBlock {
     }
     public int getMaxTransfer() {
         if (this.equals(ModBlocks.BASIC_ENERGY_CELL.get())) {
-            return 1000;
+            return 500;
         }
         return 0;
     }

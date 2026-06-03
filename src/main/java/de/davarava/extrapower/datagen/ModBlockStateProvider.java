@@ -17,7 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlockWithItem(ModBlocks.BASIC_ENERGY_CELL.get());
-        frontBackSideBottomTopBlockWithItem(ModBlocks.CRUSHER.get());
+        CrusherBlockWithItem(ModBlocks.CRUSHER.get());
     }
 
     private void horizontalBlockWithItem(Block block){
@@ -40,20 +40,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, model);
     }
 
-    private void frontBackSideBottomTopBlockWithItem(Block block) {
+    private void CrusherBlockWithItem(Block block) {
 
         ResourceLocation name = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, block.asItem().builtInRegistryHolder().key().location().getPath());
 
         ModelFile model = models().withExistingParent(name.getPath(), mcLoc("block/cube"))
-                .texture("particle", modLoc("block/" + name.getPath() + "_side"))
+                .texture("particle", modLoc("block/" + name.getPath() + "_top"))
                 .texture("down", modLoc("block/" + name.getPath() + "_bottom"))
                 .texture("up", modLoc("block/" + name.getPath() + "_top"))
                 .texture("north", modLoc("block/" + name.getPath() + "_front"))
-                .texture("south", modLoc("block/" + name.getPath() + "_front"))
+                .texture("south", modLoc("block/" + name.getPath() + "_bottom"))
                 .texture("east", modLoc("block/" + name.getPath() + "_side"))
                 .texture("west", modLoc("block/" + name.getPath() + "_side"));
 
-        simpleBlock(block, model);
+        horizontalBlock(block, model);
         simpleBlockItem(block, model);
     }
 }
