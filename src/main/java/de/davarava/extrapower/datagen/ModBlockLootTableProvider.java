@@ -29,6 +29,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.BASIC_FLUID_TANK.get());
         dropSelf(ModBlocks.BASIC_ENERGY_CELL.get());
         dropSelf(ModBlocks.BASIC_SOLAR_PANEL.get());
+        dropSelf(ModBlocks.CRUSHER.get());
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

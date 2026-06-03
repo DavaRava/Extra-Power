@@ -1,6 +1,7 @@
 package de.davarava.extrapower.block;
 
 import de.davarava.extrapower.ExtraPower;
+import de.davarava.extrapower.block.custom.CrusherBlock;
 import de.davarava.extrapower.block.custom.EnergyCellBlock;
 import de.davarava.extrapower.block.custom.FluidTankBlock;
 import de.davarava.extrapower.block.custom.SolarPanelBlock;
@@ -32,6 +33,10 @@ public class ModBlocks {
     // Solar Panels
     public static final DeferredBlock<Block> BASIC_SOLAR_PANEL = registerBlock("basic_solar_panel",
             () -> new SolarPanelBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
+                    .sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    // Crusher
+    public static final DeferredBlock<Block> CRUSHER = registerBlock("crusher",
+            () -> new CrusherBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

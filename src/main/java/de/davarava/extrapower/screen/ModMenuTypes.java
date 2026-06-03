@@ -1,6 +1,7 @@
 package de.davarava.extrapower.screen;
 
 import de.davarava.extrapower.ExtraPower;
+import de.davarava.extrapower.screen.custom.CrusherMenu;
 import de.davarava.extrapower.screen.custom.EnergyCellMenu;
 import de.davarava.extrapower.screen.custom.FluidTankMenu;
 import net.minecraft.core.registries.Registries;
@@ -20,6 +21,9 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<EnergyCellMenu>> ENERGY_CELL_MENU =
             registerMenuType("energy_cell_menu", EnergyCellMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<CrusherMenu>> CRUSHER_MENU =
+            registerMenuType("crusher_menu", CrusherMenu::new);
 
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
