@@ -17,7 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlockWithItem(ModBlocks.BASIC_ENERGY_CELL.get());
-        frontSideBottomTopBlockWithItem(ModBlocks.CRUSHER.get());
+        frontBackSideBottomTopBlockWithItem(ModBlocks.CRUSHER.get());
     }
 
     private void horizontalBlockWithItem(Block block){
@@ -40,7 +40,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, model);
     }
 
-    private void frontSideBottomTopBlockWithItem(Block block) {
+    private void frontBackSideBottomTopBlockWithItem(Block block) {
 
         ResourceLocation name = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, block.asItem().builtInRegistryHolder().key().location().getPath());
 
@@ -49,7 +49,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("down", modLoc("block/" + name.getPath() + "_bottom"))
                 .texture("up", modLoc("block/" + name.getPath() + "_top"))
                 .texture("north", modLoc("block/" + name.getPath() + "_front"))
-                .texture("south", modLoc("block/" + name.getPath() + "_side"))
+                .texture("south", modLoc("block/" + name.getPath() + "_front"))
                 .texture("east", modLoc("block/" + name.getPath() + "_side"))
                 .texture("west", modLoc("block/" + name.getPath() + "_side"));
 

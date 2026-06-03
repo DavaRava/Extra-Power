@@ -5,7 +5,7 @@
     "east": "extrapower:block/crusher_side",
     "north": "extrapower:block/crusher_front",
     "particle": "extrapower:block/crusher_side",
-    "south": "extrapower:block/crusher_side",
+    "south": "extrapower:block/crusher_front",
     "up": "extrapower:block/crusher_top",
     "west": "extrapower:block/crusher_side"
   }

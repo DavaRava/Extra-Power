@@ -87,7 +87,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
     public int getProductionRate() {
         if (this.equals(ModBlocks.BASIC_SOLAR_PANEL.get())) {
-            return 8;
+            return 10;
         }
         return 0;
     }
