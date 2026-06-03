@@ -55,6 +55,6 @@ public class EnergyDisplayTooltipArea {
     public void render(GuiGraphics guiGraphics) {
         int stored = (int)(height * (energy.getEnergyStored() / (float)energy.getMaxEnergyStored()));
         guiGraphics.fillGradient(xPos,yPos + (height - stored),xPos + width,
-                yPos + height,0xffcc66ff, 0xff3a1a4d);
+                yPos + height,0xffe74c3c, 0xff8b0000);
     }
 }

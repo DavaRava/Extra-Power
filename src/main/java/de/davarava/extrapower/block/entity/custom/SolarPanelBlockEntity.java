@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -57,9 +58,12 @@ public class SolarPanelBlockEntity extends BlockEntity {
     }
 
     public void tick (Level lvl, BlockPos blockPos, BlockState blockState){
+        if(!blockState.getValue(SolarPanelBlock.ENABLED)) return;
+
         if(lvl.canSeeSky(blockPos) && lvl.isDay()){
             generateEnergy(lvl, blockPos);
         }
+
         pushEnergyToBelowNeighbor(lvl, blockPos);
     }
 

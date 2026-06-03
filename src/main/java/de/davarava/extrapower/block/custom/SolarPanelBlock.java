@@ -6,8 +6,13 @@ import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import de.davarava.extrapower.block.entity.custom.SolarPanelBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +28,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -35,6 +43,8 @@ import java.util.List;
 public class SolarPanelBlock extends BaseEntityBlock {
     public static final MapCodec<SolarPanelBlock> CODEC = simpleCodec(SolarPanelBlock::new);
     private static final VoxelShape SHAPE = Block.box(0,0,0,16,5,16);
+
+    public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
 
     public SolarPanelBlock(Properties properties) {
         super(properties);
@@ -94,6 +104,23 @@ public class SolarPanelBlock extends BaseEntityBlock {
         return createTickerHelper(blockEntityType, ModBlockEntities.SOLAR_PANE_BE.get(),
                 ((lvl, blockPos, blockState, solarPanelBlockEntity) ->
                         solarPanelBlockEntity.tick(lvl, blockPos, blockState)));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(ENABLED);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide) {
+            BlockState newState = state.cycle(ENABLED);
+            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+
+            return InteractionResult.SUCCESS;
+        }
+
+        return InteractionResult.sidedSuccess(true);
     }
 
     @Override
