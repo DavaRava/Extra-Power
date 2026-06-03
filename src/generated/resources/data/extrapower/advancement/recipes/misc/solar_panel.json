@@ -21,16 +21,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_redstone": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:redstone"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "extrapower:solar_panel"
@@ -42,7 +32,6 @@
     [
       "has_the_recipe",
       "has_glass",
-      "has_redstone",
       "has_daylight_detector"
     ]
   ],

@@ -10,11 +10,10 @@
       "item": "extrapower:solar_panel"
     },
     "C": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:repeater"
     }
   },
   "pattern": [
-    "ACA",
     "BBB",
     "ACA"
   ],

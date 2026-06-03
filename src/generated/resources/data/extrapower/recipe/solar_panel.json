@@ -5,20 +5,17 @@
     "A": {
       "tag": "c:glass_blocks"
     },
-    "B": {
-      "item": "minecraft:redstone"
-    },
     "C": {
       "item": "minecraft:daylight_detector"
     }
   },
   "pattern": [
     "AAA",
-    "BCB",
+    "CCC",
     "AAA"
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "extrapower:solar_panel"
   }
 }

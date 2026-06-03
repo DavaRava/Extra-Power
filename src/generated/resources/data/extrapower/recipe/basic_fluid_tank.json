@@ -8,14 +8,11 @@
     },
     "B": {
       "tag": "c:glass_blocks"
-    },
-    "C": {
-      "item": "minecraft:redstone"
     }
   },
   "pattern": [
     "ABA",
-    "ACA",
+    "ABA",
     "ABA"
   ],
   "result": {
