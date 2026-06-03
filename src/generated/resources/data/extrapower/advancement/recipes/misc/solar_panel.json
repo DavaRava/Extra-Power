@@ -1,11 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_daylight_detector": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:iron_ingot"
+            "items": "minecraft:daylight_detector"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:glass_blocks"
           }
         ]
       },
@@ -21,19 +31,9 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_solar_panel": {
-      "conditions": {
-        "items": [
-          {
-            "items": "extrapower:solar_panel"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "extrapower:basic_solar_panel"
+        "recipe": "extrapower:solar_panel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_ingot",
-      "has_solar_panel",
-      "has_redstone"
+      "has_glass",
+      "has_redstone",
+      "has_daylight_detector"
     ]
   ],
   "rewards": {
     "recipes": [
-      "extrapower:basic_solar_panel"
+      "extrapower:solar_panel"
     ]
   }
 }
