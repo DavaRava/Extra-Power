@@ -2,10 +2,7 @@ package de.davarava.extrapower.block.entity;
 
 import de.davarava.extrapower.ExtraPower;
 import de.davarava.extrapower.block.ModBlocks;
-import de.davarava.extrapower.block.entity.custom.CrusherBlockEntity;
-import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
-import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
-import de.davarava.extrapower.block.entity.custom.SolarPanelBlockEntity;
+import de.davarava.extrapower.block.entity.custom.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -31,6 +28,10 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<CrusherBlockEntity>> CRUSHER_BE =
             BLOCK_ENTITIES.register("crusher_be", () -> BlockEntityType.Builder.of(
                     CrusherBlockEntity::new, ModBlocks.CRUSHER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR_BE =
+            BLOCK_ENTITIES.register("coal_generator_be", () -> BlockEntityType.Builder.of(
+                    CoalGeneratorBlockEntity::new, ModBlocks.BASIC_COAL_GENERATOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

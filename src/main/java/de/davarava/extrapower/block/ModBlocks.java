@@ -1,10 +1,7 @@
 package de.davarava.extrapower.block;
 
 import de.davarava.extrapower.ExtraPower;
-import de.davarava.extrapower.block.custom.CrusherBlock;
-import de.davarava.extrapower.block.custom.EnergyCellBlock;
-import de.davarava.extrapower.block.custom.FluidTankBlock;
-import de.davarava.extrapower.block.custom.SolarPanelBlock;
+import de.davarava.extrapower.block.custom.*;
 import de.davarava.extrapower.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -42,6 +39,11 @@ public class ModBlocks {
     // Crusher
     public static final DeferredBlock<Block> CRUSHER = registerBlock("crusher",
             () -> new CrusherBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
+                    .sound(SoundType.STONE).requiresCorrectToolForDrops()));
+
+    // Coal Generators
+    public static final DeferredBlock<Block> BASIC_COAL_GENERATOR = registerBlock("basic_coal_generator",
+            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of().strength(5f, 6f)
                     .sound(SoundType.STONE).requiresCorrectToolForDrops()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

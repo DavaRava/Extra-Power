@@ -23,7 +23,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.BASIC_ENERGY_CELL.get())
                 .add(ModBlocks.BASIC_SOLAR_PANEL.get())
                 .add(ModBlocks.MACHINE_FRAME.get())
-                .add(ModBlocks.CRUSHER.get());
+                .add(ModBlocks.CRUSHER.get())
+                .add(ModBlocks.BASIC_COAL_GENERATOR.get());
 
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
@@ -31,6 +32,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.BASIC_ENERGY_CELL.get())
                 .add(ModBlocks.BASIC_SOLAR_PANEL.get())
                 .add(ModBlocks.MACHINE_FRAME.get())
-                .add(ModBlocks.CRUSHER.get());
+                .add(ModBlocks.CRUSHER.get())
+                .add(ModBlocks.BASIC_COAL_GENERATOR.get());
     }
 }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "extrapower:machine_frame"
+    },
+    "C": {
+      "item": "minecraft:furnace"
+    },
+    "D": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "DBD",
+    "AEA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "extrapower:basic_coal_generator"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "extrapower:block/basic_coal_generator_top",
+    "east": "extrapower:block/basic_coal_generator_side",
+    "north": "extrapower:block/basic_coal_generator_front",
+    "particle": "extrapower:block/basic_coal_generator_front",
+    "south": "extrapower:block/basic_coal_generator_top",
+    "up": "extrapower:block/basic_coal_generator_top",
+    "west": "extrapower:block/basic_coal_generator_side"
+  }
+}

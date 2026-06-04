@@ -5,17 +5,17 @@
     "A": {
       "tag": "c:glass_blocks"
     },
-    "C": {
+    "B": {
       "item": "minecraft:daylight_detector"
     }
   },
   "pattern": [
     "AAA",
-    "CCC",
+    "BBB",
     "AAA"
   ],
   "result": {
-    "count": 1,
+    "count": 3,
     "id": "extrapower:solar_panel"
   }
 }

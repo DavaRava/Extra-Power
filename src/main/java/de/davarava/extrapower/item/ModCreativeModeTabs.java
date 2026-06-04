@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept((ModBlocks.MACHINE_FRAME));
                         pOutput.accept((ModBlocks.CRUSHER));
                         pOutput.accept(ModBlocks.BASIC_ENERGY_CELL);
+                        pOutput.accept(ModBlocks.BASIC_COAL_GENERATOR);
                         pOutput.accept(ModBlocks.BASIC_FLUID_TANK);
                         pOutput.accept(ModBlocks.BASIC_SOLAR_PANEL);
                         pOutput.accept(ModItems.SOLAR_PANEL);

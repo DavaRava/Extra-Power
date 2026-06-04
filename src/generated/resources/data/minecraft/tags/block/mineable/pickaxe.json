@@ -4,6 +4,7 @@
     "extrapower:basic_energy_cell",
     "extrapower:basic_solar_panel",
     "extrapower:machine_frame",
-    "extrapower:crusher"
+    "extrapower:crusher",
+    "extrapower:basic_coal_generator"
   ]
 }

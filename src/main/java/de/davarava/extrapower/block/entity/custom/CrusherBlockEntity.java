@@ -28,18 +28,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
-    private static final int INPUT_SLOT = 0;
-    private static final int MAIN_OUTPUT_SLOT = 1;
-    private static final int SECONDARY_OUTPUT_SLOT = 2;
-
     public final int capacity = getCrusherBlock().getCapacity();
     private final int maxTransfer = getCrusherBlock().getMaxTransfer();
     private final int useRate = getCrusherBlock().getUseRate();
-
-    private final ContainerData data;
-    private int progress = 0;
-    private int maxProgress = 72;
-    private final int DEFAULT_MAX_PROGRESS = 72;
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
@@ -61,29 +52,6 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
 
     public CrusherBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CRUSHER_BE.get(), pos, blockState);
-        this.data = new ContainerData() {
-            @Override
-            public int get(int index) {
-                return switch (index){
-                    case 0 -> CrusherBlockEntity.this.progress;
-                    case 1 -> CrusherBlockEntity.this.maxProgress;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int index, int value) {
-                switch (index){
-                    case 0: CrusherBlockEntity.this.progress = value;
-                    case 1: CrusherBlockEntity.this.maxProgress = value;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        };
     }
 
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
@@ -122,8 +90,6 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     protected void saveAdditional (CompoundTag tag, HolderLookup.Provider registries){
         tag.put("crusher.inventory", itemHandler.serializeNBT(registries));
-        tag.putInt("crusher.progress", progress);
-        tag.putInt("crusher.max_progress", maxProgress);
         tag.putInt("crusher.energy", ENERGY_STORAGE.getEnergyStored());
         super.saveAdditional(tag, registries);
     }
@@ -132,8 +98,6 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     protected void loadAdditional (CompoundTag tag, HolderLookup.Provider registries){
         super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("crusher.inventory"));
-        progress = tag.getInt("crusher.progress");
-        maxProgress = tag.getInt("crusher.max_progress");
         ENERGY_STORAGE.setEnergy(tag.getInt("crusher.energy"));
     }
 
