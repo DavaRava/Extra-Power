@@ -18,7 +18,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         horizontalBlockWithItem(ModBlocks.BASIC_ENERGY_CELL.get());
         simpleBlockWithItem(ModBlocks.MACHINE_FRAME.get(), cubeAll(ModBlocks.MACHINE_FRAME.get()));
-        topSideBottomHorizontalBlockWithItem(ModBlocks.CRUSHER.get());
+        //topSideBottomHorizontalBlockWithItem(ModBlocks.CRUSHER.get());
         generatorHorizontalBlockWithItem(ModBlocks.BASIC_COAL_GENERATOR.get());
     }
 

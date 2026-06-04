@@ -4,7 +4,13 @@ import com.mojang.serialization.MapCodec;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.custom.CrusherBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -124,6 +130,64 @@ public class CrusherBlock extends BaseEntityBlock {
 
         return createTickerHelper(blockEntityType, ModBlockEntities.CRUSHER_BE.get(),
                 (level1, pos, state1, blockEntity) -> blockEntity.tick(level1, pos, state1));
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (!state.getValue(LIT)) {
+            return;
+        }
+
+        double x = pos.getX() + 0.5;
+        double y = pos.getY() + 0.9;
+        double z = pos.getZ() + 0.5;
+
+        // Sound
+        if (random.nextFloat() < 0.08f) {
+            level.playLocalSound(
+                    x, y, z,
+                    SoundEvents.GRINDSTONE_USE,
+                    SoundSource.BLOCKS,
+                    1.4f,
+                    0.9f + random.nextFloat() * 0.2f,
+                    false
+            );
+        }
+
+        // Rauch
+        if (random.nextInt(4) == 0) {
+            level.addParticle(
+                    ParticleTypes.SMOKE,
+                    x + (random.nextDouble() - 0.5) * 0.3,
+                    y,
+                    z + (random.nextDouble() - 0.5) * 0.3,
+                    0.0, 0.02, 0.0
+            );
+        }
+
+        // Item-Partikel
+        if (level.getBlockEntity(pos) instanceof CrusherBlockEntity crusher &&
+                !crusher.itemHandler.getStackInSlot(0).isEmpty()) {
+
+            level.addParticle(
+                    new ItemParticleOption(ParticleTypes.ITEM, crusher.itemHandler.getStackInSlot(0)),
+                    x + (random.nextDouble() - 0.5) * 0.4,
+                    y + 0.1,
+                    z + (random.nextDouble() - 0.5) * 0.4,
+                    0.0, 0.03, 0.0
+            );
+        }
+
+        // Stein-/Funken-Partikel
+        if (random.nextInt(3) == 0) {
+            level.addParticle(
+                    ParticleTypes.CRIT,
+                    x + (random.nextDouble() - 0.5) * 0.4,
+                    y,
+                    z + (random.nextDouble() - 0.5) * 0.4,
+                    0.0, 0.02, 0.0
+            );
+        }
     }
 
     @Override
