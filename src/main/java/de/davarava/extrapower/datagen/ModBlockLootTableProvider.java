@@ -1,7 +1,6 @@
 package de.davarava.extrapower.datagen;
 
 import de.davarava.extrapower.block.ModBlocks;
-import de.davarava.extrapower.item.ModItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;

@@ -1,6 +1,5 @@
 package de.davarava.extrapower.screen.custom;
 
-import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.custom.FluidTankBlock;
 import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import de.davarava.extrapower.screen.ModMenuTypes;

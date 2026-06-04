@@ -1,9 +1,7 @@
 package de.davarava.extrapower.screen.custom;
 
 import de.davarava.extrapower.block.custom.CrusherBlock;
-import de.davarava.extrapower.block.custom.EnergyCellBlock;
 import de.davarava.extrapower.block.entity.custom.CrusherBlockEntity;
-import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
 import de.davarava.extrapower.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

@@ -1,14 +1,9 @@
 package de.davarava.extrapower.block.entity.custom;
 
 import de.davarava.extrapower.block.custom.CrusherBlock;
-import de.davarava.extrapower.block.custom.EnergyCellBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.energy.ModEnergyStorage;
-import de.davarava.extrapower.recipe.CrusherRecipe;
-import de.davarava.extrapower.recipe.CrusherRecipeInput;
-import de.davarava.extrapower.recipe.ModRecipes;
 import de.davarava.extrapower.screen.custom.CrusherMenu;
-import de.davarava.extrapower.screen.custom.EnergyCellMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -25,16 +20,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     private static final int INPUT_SLOT = 0;
@@ -123,85 +114,7 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public void tick(Level level, BlockPos pPos, BlockState pState) {
-        if(hasRecipe() && isOutputSlotEmptyOrReceivable()) {
-            increaseCraftingProgress();
-            useEnergyForCrafting();
-            level.setBlockAndUpdate(pPos, pState.setValue(CrusherBlock.LIT, true));
-            setChanged(level, pPos, pState);
 
-            if (hasCraftingFinished()) {
-                craftItem();
-                resetProgress();
-            }
-
-        } else {
-            resetProgress();
-            level.setBlockAndUpdate(pPos, pState.setValue(CrusherBlock.LIT, false));
-        }
-    }
-
-    private void useEnergyForCrafting() {
-        this.ENERGY_STORAGE.extractEnergy(useRate, false);
-    }
-
-    private void resetProgress() {
-        this.progress = 0;
-        this.maxProgress = DEFAULT_MAX_PROGRESS;
-    }
-
-    private void craftItem() {
-        Optional<RecipeHolder<CrusherRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().output();
-
-        itemHandler.extractItem(INPUT_SLOT, 1, false);
-        itemHandler.setStackInSlot(MAIN_OUTPUT_SLOT, new ItemStack(output.getItem(),
-                itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getCount() + output.getCount()));
-    }
-
-    private boolean hasCraftingFinished() {
-        return this.progress >= this.maxProgress;
-    }
-
-    private void increaseCraftingProgress() {
-        progress++;
-    }
-
-    private boolean isOutputSlotEmptyOrReceivable() {
-        return this.itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).isEmpty() ||
-                this.itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getMaxStackSize()
-                && this.itemHandler.getStackInSlot(SECONDARY_OUTPUT_SLOT).isEmpty() ||
-                this.itemHandler.getStackInSlot(SECONDARY_OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(SECONDARY_OUTPUT_SLOT).getMaxStackSize();
-    }
-
-    private boolean hasRecipe() {
-        Optional<RecipeHolder<CrusherRecipe>> recipe = getCurrentRecipe();
-        if(recipe.isEmpty()) {
-            return false;
-        }
-
-        ItemStack output = recipe.get().value().getResultItem(null);
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output) && hasEnoughEnergyToCraft();
-    }
-
-    private boolean hasEnoughEnergyToCraft() {
-        return this.ENERGY_STORAGE.getEnergyStored() >= useRate * maxProgress;
-    }
-
-    private Optional<RecipeHolder<CrusherRecipe>> getCurrentRecipe() {
-        return this.level.getRecipeManager()
-                .getRecipeFor(ModRecipes.CRUSHER_TYPE.get(), new CrusherRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
-    }
-
-    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).isEmpty() ||
-                itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getItem() == output.getItem();
-    }
-
-    private boolean canInsertAmountIntoOutputSlot(int count) {
-        int maxCount = itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getMaxStackSize();
-        int currentCount = itemHandler.getStackInSlot(MAIN_OUTPUT_SLOT).getCount();
-
-        return maxCount >= currentCount + count;
     }
 
     // Synchronisation

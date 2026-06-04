@@ -8,7 +8,6 @@ import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import de.davarava.extrapower.block.entity.custom.SolarPanelBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.CrafterBlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

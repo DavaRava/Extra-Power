@@ -1,17 +1,13 @@
 package de.davarava.extrapower.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import de.davarava.extrapower.block.ModBlocks;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.custom.CrusherBlockEntity;
-import de.davarava.extrapower.block.entity.custom.EnergyCellBlockEntity;
-import de.davarava.extrapower.block.entity.custom.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.ai.goal.InteractGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
