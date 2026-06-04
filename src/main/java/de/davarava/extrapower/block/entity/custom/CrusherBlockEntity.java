@@ -3,6 +3,9 @@ package de.davarava.extrapower.block.entity.custom;
 import de.davarava.extrapower.block.custom.CrusherBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.energy.ModEnergyStorage;
+import de.davarava.extrapower.recipe.CrusherRecipe;
+import de.davarava.extrapower.recipe.CrusherRecipeInput;
+import de.davarava.extrapower.recipe.ModRecipes;
 import de.davarava.extrapower.screen.custom.CrusherMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,12 +25,15 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     public final int CAPACITY = getCrusherBlock().getCapacity();
@@ -136,7 +142,8 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(Items.GRAVEL);
+        Optional<RecipeHolder<CrusherRecipe>> recipe = getCurrentRecipe();
+        ItemStack output = recipe.get().value().output();
 
         itemHandler.extractItem(INPUT_SLOT, 1, false);
         itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(),
@@ -157,11 +164,16 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean hasRecipe() {
-        ItemStack input = new ItemStack(Items.COBBLESTONE);
-        ItemStack output = new ItemStack(Items.GRAVEL);
+        Optional<RecipeHolder<CrusherRecipe>> recipe = getCurrentRecipe();
 
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output) &&
-                this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == input.getItem();
+        if(recipe.isEmpty()) return false;
+        ItemStack output = recipe.get().value().output();
+
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    }
+
+    private Optional<RecipeHolder<CrusherRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager().getRecipeFor(ModRecipes.CRUSHER_TYPE.get(), new CrusherRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

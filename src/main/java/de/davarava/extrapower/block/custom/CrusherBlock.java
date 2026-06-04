@@ -143,50 +143,42 @@ public class CrusherBlock extends BaseEntityBlock {
         double z = pos.getZ() + 0.5;
 
         // Sound
-        if (random.nextFloat() < 0.08f) {
-            level.playLocalSound(
-                    x, y, z,
-                    SoundEvents.GRINDSTONE_USE,
-                    SoundSource.BLOCKS,
-                    1.4f,
-                    0.9f + random.nextFloat() * 0.2f,
-                    false
-            );
+        if (random.nextFloat() < 0.20f) { // 20% Chance pro Tick
+            level.playLocalSound(x, y, z, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS,
+                    1.0f, 0.95f + random.nextFloat() * 0.1f, false);
+        }
+
+        // Sound
+        if (random.nextFloat() < 0.20f) { // 20% Chance pro Tick
+            level.playLocalSound(x, y, z, SoundEvents.STONE_HIT, SoundSource.BLOCKS,
+                    1.0f, 0.95f + random.nextFloat() * 0.1f, false);
+        }
+
+        // Sound
+        if (random.nextFloat() < 0.20f) { // 20% Chance pro Tick
+            level.playLocalSound(x, y, z, SoundEvents.IRON_TRAPDOOR_OPEN, SoundSource.BLOCKS,
+                    1.0f, 0.95f + random.nextFloat() * 0.1f, false);
         }
 
         // Rauch
         if (random.nextInt(4) == 0) {
-            level.addParticle(
-                    ParticleTypes.SMOKE,
-                    x + (random.nextDouble() - 0.5) * 0.3,
-                    y,
-                    z + (random.nextDouble() - 0.5) * 0.3,
-                    0.0, 0.02, 0.0
-            );
+            level.addParticle(ParticleTypes.SMOKE, x + (random.nextDouble() - 0.5) * 0.3,
+                    y, z + (random.nextDouble() - 0.5) * 0.3, 0.0, 0.02, 0.0);
         }
 
         // Item-Partikel
         if (level.getBlockEntity(pos) instanceof CrusherBlockEntity crusher &&
                 !crusher.itemHandler.getStackInSlot(0).isEmpty()) {
 
-            level.addParticle(
-                    new ItemParticleOption(ParticleTypes.ITEM, crusher.itemHandler.getStackInSlot(0)),
-                    x + (random.nextDouble() - 0.5) * 0.4,
-                    y + 0.1,
-                    z + (random.nextDouble() - 0.5) * 0.4,
-                    0.0, 0.03, 0.0
-            );
+            level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, crusher.itemHandler.getStackInSlot(0)),
+                    x + (random.nextDouble() - 0.5) * 0.4, y + 0.1, z + (random.nextDouble() - 0.5) * 0.4,
+                    0.0, 0.03, 0.0);
         }
 
         // Stein-/Funken-Partikel
         if (random.nextInt(3) == 0) {
-            level.addParticle(
-                    ParticleTypes.CRIT,
-                    x + (random.nextDouble() - 0.5) * 0.4,
-                    y,
-                    z + (random.nextDouble() - 0.5) * 0.4,
-                    0.0, 0.02, 0.0
-            );
+            level.addParticle(ParticleTypes.CRIT, x + (random.nextDouble() - 0.5) * 0.4,
+                    y, z + (random.nextDouble() - 0.5) * 0.4, 0.0, 0.02, 0.0);
         }
     }
 
