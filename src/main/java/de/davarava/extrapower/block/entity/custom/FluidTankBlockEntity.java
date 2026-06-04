@@ -28,6 +28,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,10 +68,10 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
         return FLUID_TANK.getFluid();
     }
 
+    public IItemHandler getItemHandler(Direction direction) { return itemHandler; }
     public IFluidHandler getTank(@Nullable Direction direction) {
         return FLUID_TANK;
     }
-
     private FluidTankBlock getFluidTankBlock(){
         return ((FluidTankBlock) this.getBlockState().getBlock());
     }

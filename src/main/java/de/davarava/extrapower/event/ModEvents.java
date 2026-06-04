@@ -16,8 +16,14 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.FLUID_TANK_BE.get(), FluidTankBlockEntity::getTank);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.FLUID_TANK_BE.get(), FluidTankBlockEntity::getItemHandler);
+
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.ENERGY_CELL_BE.get(), EnergyCellBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.SOLAR_PANE_BE.get(), SolarPanelBlockEntity::getEnergyStorage);
+
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.CRUSHER_BE.get(), CrusherBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.CRUSHER_BE.get(), CrusherBlockEntity::getItemHandler);
+
+
     }
 }
