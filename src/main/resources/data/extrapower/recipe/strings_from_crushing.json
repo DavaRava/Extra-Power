@@ -1,7 +1,7 @@
 {
   "type": "extrapower:crushing",
   "ingredient": {
-    "item": "minecraft:wool"
+    "tag": "minecraft:wool"
   },
   "result": {
     "id": "minecraft:string",
