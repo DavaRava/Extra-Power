@@ -23,12 +23,12 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class EnergyCellBlockEntity extends BlockEntity implements MenuProvider {
-    public final int capacity = getEnergyCellBlock().getCapacity();
-    private final int maxTransfer = getEnergyCellBlock().getMaxTransfer();
+    public final int CAPACITY = getEnergyCellBlock().getCapacity();
+    private final int MAX_TRANSFER = getEnergyCellBlock().getMaxTransfer();
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(capacity, maxTransfer) {
+        return new ModEnergyStorage(CAPACITY, MAX_TRANSFER) {
             @Override
             public void onEnergyChanged() {
                 setChanged();

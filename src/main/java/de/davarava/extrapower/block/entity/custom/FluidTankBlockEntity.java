@@ -32,8 +32,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
-    public final int capacity = getFluidTankBlock().getCapacity();
-    private final int maxTransfer = getFluidTankBlock().getMaxTransfer();
+    public final int CAPACITY = getFluidTankBlock().getCapacity();
+    private final int MAX_TRANSFER = getFluidTankBlock().getMaxTransfer();
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
@@ -45,7 +45,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     private final FluidTank FLUID_TANK = createFluidTank();
 
     private FluidTank createFluidTank() {
-        return new FluidTank(capacity) {
+        return new FluidTank(CAPACITY) {
             @Override
             protected void onContentsChanged() {
                 setChanged();
@@ -131,7 +131,7 @@ public class FluidTankBlockEntity extends BlockEntity implements MenuProvider {
     private void pushFluidToBelowNeighbor()
     { //push fluid from tank into the block below for example into a generator that uses a specific fluid
         FluidUtil.getFluidHandler(level, worldPosition.below(), null).ifPresent(iFluidHandler -> {
-            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, maxTransfer, true);
+            FluidUtil.tryFluidTransfer(iFluidHandler, this.FLUID_TANK, MAX_TRANSFER, true);
         });
     }
 

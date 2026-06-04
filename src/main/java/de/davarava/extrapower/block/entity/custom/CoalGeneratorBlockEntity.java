@@ -1,7 +1,6 @@
 package de.davarava.extrapower.block.entity.custom;
 
 import de.davarava.extrapower.block.custom.CoalGeneratorBlock;
-import de.davarava.extrapower.block.custom.SolarPanelBlock;
 import de.davarava.extrapower.block.entity.ModBlockEntities;
 import de.davarava.extrapower.block.entity.energy.ModEnergyStorage;
 import de.davarava.extrapower.block.entity.energy.ModEnergyUtil;
@@ -20,13 +19,13 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class CoalGeneratorBlockEntity extends BlockEntity {
-    public final int capacity = getCoalGeneratorBlock().getCapacity();
-    private final int maxTransfer = getCoalGeneratorBlock().getMaxTransfer();
-    private final int productionRate = getCoalGeneratorBlock().getProductionRate();
+    public final int CAPACITY = getCoalGeneratorBlock().getCapacity();
+    private final int MAX_TRANSFER = getCoalGeneratorBlock().getMaxTransfer();
+    private final int PRODUCTION_RATE = getCoalGeneratorBlock().getProductionRate();
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(capacity, maxTransfer) {
+        return new ModEnergyStorage(CAPACITY, MAX_TRANSFER) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -42,7 +41,6 @@ public class CoalGeneratorBlockEntity extends BlockEntity {
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
         return ENERGY_STORAGE;
     }
-
     private CoalGeneratorBlock getCoalGeneratorBlock(){
         return ((CoalGeneratorBlock) this.getBlockState().getBlock());
     }
@@ -52,7 +50,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity {
     }
 
     private void generateEnergy(Level lvl, BlockPos pos) {
-        int toProduce = productionRate;
+        int toProduce = PRODUCTION_RATE;
 
         ENERGY_STORAGE.receiveEnergy(toProduce, false);
     }

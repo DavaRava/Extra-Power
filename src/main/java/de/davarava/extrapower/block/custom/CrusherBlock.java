@@ -120,12 +120,10 @@ public class CrusherBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if(level.isClientSide()) {
-            return null;
-        }
+        if(level.isClientSide()) return null;
 
         return createTickerHelper(blockEntityType, ModBlockEntities.CRUSHER_BE.get(),
-                (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
+                (level1, pos, state1, blockEntity) -> blockEntity.tick(level1, pos, state1));
     }
 
     @Override

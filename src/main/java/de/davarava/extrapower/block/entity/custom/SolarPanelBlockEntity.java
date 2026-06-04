@@ -19,13 +19,13 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class SolarPanelBlockEntity extends BlockEntity {
-    public final int capacity = getSolarPanelBlock().getCapacity();
-    private final int maxTransfer = getSolarPanelBlock().getMaxTransfer();
-    private final int productionRate = getSolarPanelBlock().getProductionRate();
+    public final int CAPACITY = getSolarPanelBlock().getCapacity();
+    private final int MAX_TRANSFER = getSolarPanelBlock().getMaxTransfer();
+    private final int PRODUCTION_RATE = getSolarPanelBlock().getProductionRate();
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(capacity, maxTransfer) {
+        return new ModEnergyStorage(CAPACITY, MAX_TRANSFER) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -57,7 +57,7 @@ public class SolarPanelBlockEntity extends BlockEntity {
     }
 
     private void generateEnergy(Level lvl, BlockPos pos) {
-        int toProduce = productionRate;
+        int toProduce = PRODUCTION_RATE;
 
         if (lvl.isRainingAt(pos.above())){
             toProduce /= 2;

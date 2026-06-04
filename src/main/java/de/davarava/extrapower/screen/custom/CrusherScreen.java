@@ -16,6 +16,9 @@ import java.util.Optional;
 public class CrusherScreen extends AbstractContainerScreen<CrusherMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/crusher/crusher_gui.png");
+    private static final ResourceLocation ARROW_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID,"textures/gui/crusher/arrow_progress.png");
+
     private EnergyDisplayTooltipArea energyInfoArea;
 
     public CrusherScreen(CrusherMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -28,18 +31,6 @@ public class CrusherScreen extends AbstractContainerScreen<CrusherMenu> {
 
         assignEnergyInfoArea();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
-    }
-
-    private void assignEnergyInfoArea() {
-        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 134,
-                ((height - imageHeight) / 2) + 17, menu.blockEntity.getEnergyStorage(null), 16, 52);
-    }
-
-    private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
-        if(isMouseAboveArea(mouseX, mouseY, x, y, 134, 17, 16, 52)) {
-            guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
-                    Optional.empty(), mouseX - x, mouseY - y);
-        }
     }
 
     @Override
@@ -62,6 +53,7 @@ public class CrusherScreen extends AbstractContainerScreen<CrusherMenu> {
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
         energyInfoArea.render(guiGraphics);
+        renderProgressArrow(guiGraphics, x, y);
     }
 
     @Override
@@ -69,6 +61,23 @@ public class CrusherScreen extends AbstractContainerScreen<CrusherMenu> {
         renderBackground(guiGraphics, mouseX, mouseY, delta);
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    private void assignEnergyInfoArea() {
+        energyInfoArea = new EnergyDisplayTooltipArea(((width - imageWidth) / 2) + 134,
+                ((height - imageHeight) / 2) + 17, menu.blockEntity.getEnergyStorage(null), 16, 52);
+    }
+    private void renderEnergyAreaTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y) {
+        if(isMouseAboveArea(mouseX, mouseY, x, y, 134, 17, 16, 52)) {
+            guiGraphics.renderTooltip(this.font, energyInfoArea.getTooltips(),
+                    Optional.empty(), mouseX - x, mouseY - y);
+        }
+    }
+
+    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y){
+        if(menu.isCrafting()){
+            guiGraphics.blit(ARROW_TEXTURE, x + 64, y + 40, 0, 0, menu.getScaledArrowProgress(), 6, 12, 6);
+        }
     }
 
     public static boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
