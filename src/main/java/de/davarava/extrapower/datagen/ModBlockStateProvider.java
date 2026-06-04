@@ -50,7 +50,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         ModelFile model = models().withExistingParent(name.getPath(), mcLoc("block/cube"))
                 .texture("particle", modLoc("block/" + name.getPath() + "_front"))
-                .texture("down", modLoc("block/" + name.getPath() + "_top"))
+                .texture("down", modLoc("block/" + name.getPath() + "_bottom"))
                 .texture("up", modLoc("block/" + name.getPath() + "_top"))
                 .texture("north", modLoc("block/" + name.getPath() + "_front"))
                 .texture("south", modLoc("block/" + name.getPath() + "_top"))

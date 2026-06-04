@@ -2,11 +2,11 @@
   "parent": "minecraft:block/cube",
   "textures": {
     "down": "extrapower:block/crusher_bottom",
-    "east": "extrapower:block/crusher_side",
+    "east": "extrapower:block/crusher_side2",
     "north": "extrapower:block/crusher_side",
     "particle": "extrapower:block/crusher_top",
     "south": "extrapower:block/crusher_side",
     "up": "extrapower:block/crusher_top",
-    "west": "extrapower:block/crusher_side"
+    "west": "extrapower:block/crusher_side2"
   }
 }
