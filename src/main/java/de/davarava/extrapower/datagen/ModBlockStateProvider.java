@@ -17,7 +17,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlockWithItem(ModBlocks.BASIC_ENERGY_CELL.get());
-        CrusherBlockWithItem(ModBlocks.CRUSHER.get());
+        topSideBottomHorizontalBlockWithItem(ModBlocks.CRUSHER.get());
     }
 
     private void horizontalBlockWithItem(Block block){
@@ -25,22 +25,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, cubeAll(block));
     }
 
-    private void topSideBottomBlockWithItem(Block block) {
-
-        ResourceLocation name = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, block.asItem().builtInRegistryHolder().key().location().getPath());
-
-        ModelFile model = models().cubeBottomTop(
-                name.getPath(),
-                modLoc("block/" + name.getPath() + "_side"),
-                modLoc("block/" + name.getPath() + "_bottom"),
-                modLoc("block/" + name.getPath() + "_top")
-        );
-
-        simpleBlock(block, model);
-        simpleBlockItem(block, model);
-    }
-
-    private void CrusherBlockWithItem(Block block) {
+    private void topSideBottomHorizontalBlockWithItem(Block block) {
 
         ResourceLocation name = ResourceLocation.fromNamespaceAndPath(ExtraPower.MODID, block.asItem().builtInRegistryHolder().key().location().getPath());
 
@@ -48,8 +33,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("particle", modLoc("block/" + name.getPath() + "_top"))
                 .texture("down", modLoc("block/" + name.getPath() + "_bottom"))
                 .texture("up", modLoc("block/" + name.getPath() + "_top"))
-                .texture("north", modLoc("block/" + name.getPath() + "_front"))
-                .texture("south", modLoc("block/" + name.getPath() + "_bottom"))
+                .texture("north", modLoc("block/" + name.getPath() + "_side"))
+                .texture("south", modLoc("block/" + name.getPath() + "_side"))
                 .texture("east", modLoc("block/" + name.getPath() + "_side"))
                 .texture("west", modLoc("block/" + name.getPath() + "_side"));
 

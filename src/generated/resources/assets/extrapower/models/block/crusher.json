@@ -3,9 +3,9 @@
   "textures": {
     "down": "extrapower:block/crusher_bottom",
     "east": "extrapower:block/crusher_side",
-    "north": "extrapower:block/crusher_front",
+    "north": "extrapower:block/crusher_side",
     "particle": "extrapower:block/crusher_top",
-    "south": "extrapower:block/crusher_bottom",
+    "south": "extrapower:block/crusher_side",
     "up": "extrapower:block/crusher_top",
     "west": "extrapower:block/crusher_side"
   }
