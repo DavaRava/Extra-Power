@@ -6,19 +6,22 @@
       "item": "minecraft:iron_ingot"
     },
     "B": {
-      "item": "minecraft:redstone"
+      "item": "extrapower:machine_frame"
     },
     "C": {
       "item": "minecraft:gold_ingot"
     },
     "D": {
       "item": "minecraft:stonecutter"
+    },
+    "E": {
+      "item": "minecraft:redstone"
     }
   },
   "pattern": [
-    "ABA",
-    "CDC",
-    "ABA"
+    "ADA",
+    "CBC",
+    "AEA"
   ],
   "result": {
     "count": 1,

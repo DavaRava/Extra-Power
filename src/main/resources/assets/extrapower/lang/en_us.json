@@ -1,8 +1,9 @@
 {
-  "block.extrapower.basic_fluid_tank": "Basic Fluid Tank",
-  "block.extrapower.basic_energy_cell": "Basic Energy Cell",
-  "block.extrapower.basic_solar_panel": "Basic Solar Panel",
+  "block.extrapower.machine_frame": "Machine Frame",
   "block.extrapower.crusher": "Crusher",
+  "block.extrapower.basic_energy_cell": "Basic Energy Cell",
+  "block.extrapower.basic_fluid_tank": "Basic Fluid Tank",
+  "block.extrapower.basic_solar_panel": "Basic Solar Panel",
 
   "item.extrapower.solar_panel": "Solar Panel",
 

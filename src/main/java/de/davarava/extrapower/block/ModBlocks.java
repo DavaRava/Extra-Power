@@ -20,6 +20,11 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExtraPower.MODID);
 
+    // Machine Frame
+    public static final DeferredBlock<Block> MACHINE_FRAME = registerBlock("machine_frame",
+            () -> new Block(BlockBehaviour.Properties.of().strength(5f, 6f)
+                    .sound(SoundType.STONE).requiresCorrectToolForDrops()));
+
     // Fluid Tanks
     public static final DeferredBlock<Block> BASIC_FLUID_TANK = registerBlock("basic_fluid_tank",
             () -> new FluidTankBlock(BlockBehaviour.Properties.of().strength(2.5f)

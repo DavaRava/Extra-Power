@@ -31,8 +31,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Energy Cell
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.BASIC_ENERGY_CELL)
                 .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .pattern("BCB").define('B', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
+                .pattern("CDC").define('B', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
                 .pattern("ABA").define('C', Items.GOLD_INGOT).unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
+                .define('D', ModBlocks.MACHINE_FRAME).unlockedBy("has_machine_frame", has(ModBlocks.MACHINE_FRAME))
                 .group("energy_cells").save(pRecipeOutput);
 
         // Solar Panel Block
@@ -48,11 +49,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("CCC").define('C', Items.DAYLIGHT_DETECTOR).unlockedBy("has_daylight_detector", has(Items.DAYLIGHT_DETECTOR))
                 .pattern("AAA").save(pRecipeOutput);
 
+        // Machine Frame
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.MACHINE_FRAME)
+                .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .pattern("B B").define('B', Items.COPPER_INGOT).unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .pattern("ABA").save(pRecipeOutput);
+
         // Crusher
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.CRUSHER)
-                .pattern("ABA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
-                .pattern("CDC").define('B', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE))
-                .pattern("ABA").define('C', Items.GOLD_INGOT).unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
-                .define('D', Blocks.STONECUTTER).unlockedBy("has_stonecutter", has(Blocks.STONECUTTER)).save(pRecipeOutput);
+                .pattern("ADA").define('A', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .pattern("CBC").define('B', ModBlocks.MACHINE_FRAME).unlockedBy("has_machine_frame", has(ModBlocks.MACHINE_FRAME))
+                .pattern("AEA").define('C', Items.GOLD_INGOT).unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
+                .define('D', Blocks.STONECUTTER).unlockedBy("has_stonecutter", has(Blocks.STONECUTTER))
+                .define('E', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE)).save(pRecipeOutput);
     }
 }

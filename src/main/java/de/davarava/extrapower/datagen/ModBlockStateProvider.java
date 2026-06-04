@@ -5,6 +5,7 @@ import de.davarava.extrapower.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -17,6 +18,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlockWithItem(ModBlocks.BASIC_ENERGY_CELL.get());
+        simpleBlockWithItem(ModBlocks.MACHINE_FRAME.get(), cubeAll(ModBlocks.MACHINE_FRAME.get()));
         topSideBottomHorizontalBlockWithItem(ModBlocks.CRUSHER.get());
     }
 

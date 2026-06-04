@@ -19,11 +19,12 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("tab.extrapower"))
                     .icon(() -> new ItemStack(ModBlocks.BASIC_ENERGY_CELL))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.BASIC_FLUID_TANK);
+                        pOutput.accept((ModBlocks.MACHINE_FRAME));
+                        pOutput.accept((ModBlocks.CRUSHER));
                         pOutput.accept(ModBlocks.BASIC_ENERGY_CELL);
+                        pOutput.accept(ModBlocks.BASIC_FLUID_TANK);
                         pOutput.accept(ModBlocks.BASIC_SOLAR_PANEL);
                         pOutput.accept(ModItems.SOLAR_PANEL);
-                        pOutput.accept((ModBlocks.CRUSHER));
                     }).build());
 
     public static void register(IEventBus eventBus) {

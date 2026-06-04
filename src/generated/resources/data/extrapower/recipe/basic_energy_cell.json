@@ -11,11 +11,14 @@
     },
     "C": {
       "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "extrapower:machine_frame"
     }
   },
   "pattern": [
     "ABA",
-    "BCB",
+    "CDC",
     "ABA"
   ],
   "result": {
