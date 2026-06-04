@@ -84,7 +84,7 @@ public class CrusherBlock extends BaseEntityBlock {
         return 500;
     }
     public int getUseRate() {
-        return 25;
+        return 20;
     }
 
     @Override

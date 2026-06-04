@@ -19,7 +19,7 @@ public class CrusherMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CrusherMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
     public CrusherMenu(int pContainerId, Inventory inv, BlockEntity blockEntity, ContainerData data) {
@@ -50,7 +50,7 @@ public class CrusherMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting() {
-        return data.get(0) > 0;
+        return this.data.get(0) > 0;
     }
 
     public int getScaledArrowProgress(){

@@ -76,7 +76,7 @@ public class CrusherScreen extends AbstractContainerScreen<CrusherMenu> {
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y){
         if(menu.isCrafting()){
-            guiGraphics.blit(ARROW_TEXTURE, x + 64, y + 40, 0, 0, menu.getScaledArrowProgress(), 6, 12, 6);
+            guiGraphics.blit(ARROW_TEXTURE, x + 64, y + 40, 0, 0, menu.getScaledArrowProgress(), 7, 12, 7);
         }
     }
 

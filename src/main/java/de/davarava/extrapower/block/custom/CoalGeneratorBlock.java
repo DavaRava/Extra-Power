@@ -78,7 +78,7 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
     }
     public int getCapacity() {
         if (this.equals(ModBlocks.BASIC_COAL_GENERATOR.get())) {
-            return 4000;
+            return 8000;
         }
         return 0;
     }

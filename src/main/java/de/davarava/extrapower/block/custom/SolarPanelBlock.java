@@ -66,7 +66,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
     public int getCapacity() {
         if (this.equals(ModBlocks.BASIC_SOLAR_PANEL.get())) {
-            return 1000;
+            return 2000;
         }
         return 0;
     }

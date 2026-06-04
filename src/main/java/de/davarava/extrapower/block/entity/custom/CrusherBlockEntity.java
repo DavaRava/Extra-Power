@@ -59,8 +59,8 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
 
     private final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 72;
-    private final int DEFAULT_MAX_PROGRESS = 72;
+    private int maxProgress = 200;
+    private final int DEFAULT_MAX_PROGRESS = 200;
 
     public CrusherBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CRUSHER_BE.get(), pos, blockState);
@@ -103,7 +103,7 @@ public class CrusherBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
-        return new CrusherMenu(containerId, playerInventory, this, new SimpleContainerData(3));
+        return new CrusherMenu(containerId, playerInventory, this, this.data);
     }
 
     public void drops () {
